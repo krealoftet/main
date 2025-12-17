@@ -1,0 +1,43 @@
+/* =====================================================
+   File: styles/layout/_container.scss
+   ----------------------------------------------------- */
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6); // 24px
+
+  @media (max-width: 768px) {
+    padding: 0 var(--space-4); // 16px
+  }
+}
+
+/* Section Spacing */
+section {
+  padding: var(--space-16) 0; // 64px
+  scroll-margin-top: var(--space-16); // 64px - accounts for fixed header
+
+  @media (max-width: 768px) {
+    padding: var(--space-10) 0; // 40px
+    scroll-margin-top: var(--space-12); // 48px
+  }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-12); // 48px
+
+  .section-title {
+    margin-bottom: var(--space-4); // 16px
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg); // 18px
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+

@@ -1,0 +1,32 @@
+/* =====================================================
+   File: styles/main.scss
+   ----------------------------------------------------- */
+
+/* Tokens */
+@use "tokens/colors";
+@use "tokens/spacing";
+@use "tokens/typography-tokens";
+@use "tokens/icons";
+
+/* Foundations */
+@use "foundations/css-vars";
+@use "foundations/layout-vars";
+
+/* Base */
+@use "base/reset";
+@use "base/typography";
+
+/* Layout */
+@use "layout/container";
+
+/* Semantics */
+@use "semantics/color-roles";
+
+/* Components */
+@use "components/buttons";
+@use "components/navigation";
+@use "components/hero";
+@use "components/gallery";
+@use "components/forms";
+@use "components/sections";
+@use "components/footer";

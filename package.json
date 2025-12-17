@@ -1,0 +1,70 @@
+{
+  "name": "clay-workshop",
+  "version": "1.0.0",
+  "description": "Artisan ceramics and pottery studio website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:sass": "sass --watch styles/main.scss:styles/main.css --style=expanded --source-map",
+    "dev:serve": "live-server --port=3000 --host=localhost --open=/",
+    "build": "npm-run-all clean build:*",
+    "build:sass": "sass styles/main.scss:styles/main.css --style=compressed --no-source-map",
+    "build:css": "postcss styles/main.css --use autoprefixer cssnano --replace",
+    "build:js": "webpack --mode=production",
+    "build:images": "imagemin assets/images/**/* --out-dir=public/assets/images --plugin=imagemin-webp --plugin=imagemin-mozjpeg --plugin=imagemin-pngquant",
+    "clean": "rimraf public/assets/images/* styles/main.css* js/dist/*",
+    "lint": "npm-run-all lint:*",
+    "lint:html": "html-validate index.html",
+    "lint:css": "stylelint 'styles/**/*.scss'",
+    "lint:js": "eslint js/**/*.js",
+    "format": "prettier --write '**/*.{html,scss,js,json,md}'",
+    "validate": "npm-run-all lint build",
+    "serve": "http-server -p 8080 -c-1",
+    "test": "lighthouse-ci autorun"
+  },
+  "keywords": [
+    "ceramics",
+    "pottery",
+    "workshop",
+    "handmade",
+    "artisan"
+  ],
+  "author": "Clay Workshop Studio",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "@lhci/cli": "^0.12.0",
+    "autoprefixer": "^10.4.16",
+    "babel-loader": "^9.1.3",
+    "cssnano": "^6.0.1",
+    "eslint": "^8.52.0",
+    "html-validate": "^8.5.0",
+    "http-server": "^14.1.1",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-webp": "^8.0.0",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
+    "sass": "^1.69.5",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "lazysizes": "^5.3.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
+

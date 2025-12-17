@@ -1,0 +1,29 @@
+/* =====================================================
+   File: styles/foundations/_layout-vars.scss
+   ----------------------------------------------------- */
+
+@use "../tokens/spacing" as *;
+@use "../tokens/typography-tokens" as *;
+@use "../tokens/icons" as *;
+
+@mixin emit-vars($prefix, $map) {
+  @each $key, $value in $map {
+    --#{$prefix}-#{$key}: #{$value};
+  }
+}
+
+:root {
+  /* Spacing */
+  @include emit-vars("space", $spacing);
+
+  /* Typography */
+  --font-sans: #{$font-sans};
+  --font-display: #{$font-display};
+  @include emit-vars("font-size", $font-sizes);
+  @include emit-vars("line-height", $line-heights);
+  @include emit-vars("font-weight", $font-weights);
+
+  /* Icons */
+  @include emit-vars("icon", $icon-sizes);
+}
+
