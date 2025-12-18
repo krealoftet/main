@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev:sass",
+			"problemMatcher": [],
+			"label": "npm: dev:sass",
+			"detail": "sass --watch styles/main.scss:styles/main.css --style=expanded --source-map",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

@@ -1,0 +1,23 @@
+/* =====================================================
+   File: styles/foundations/_css-vars.scss
+   ----------------------------------------------------- */
+
+@use "../tokens/colors" as *;
+
+@mixin emit-color-scale($name, $map) {
+  @each $step, $value in $map {
+    --#{$name}-#{$step}: #{$value};
+  }
+}
+
+:root {
+  /* Base */
+  --white: #{$white};
+  --seashell: #{$seashell};
+
+  @include emit-color-scale("dust", $dust);
+  @include emit-color-scale("carbon", $carbon);
+  @include emit-color-scale("coral", $coral);
+  @include emit-color-scale("clay", $clay);
+}
+

@@ -1,0 +1,66 @@
+/* =====================================================
+   File: styles/components/_forms.scss
+   ----------------------------------------------------- */
+
+/* Form Styles */
+.contact-form {
+  background: var(--bg-surface);
+  padding: var(--space-8); // 32px
+  border-radius: var(--space-4); // 16px
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-muted);
+}
+
+.form-group {
+  margin-bottom: var(--space-6); // 24px
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-2); // 8px
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4); // 12px 16px
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--space-2); // 8px
+  font-size: var(--font-size-md); // 16px
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--action-primary);
+    box-shadow: 0 0 0 3px rgba(234, 104, 86, 0.1);
+  }
+
+  &:invalid:not(:placeholder-shown) {
+    border-color: var(--state-warning);
+  }
+
+  &::placeholder {
+    color: var(--text-disabled);
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-error {
+  color: var(--state-warning);
+  font-size: var(--font-size-sm); // 14px
+  margin-top: var(--space-1); // 4px
+  display: none;
+
+  &.form-error--visible {
+    display: block;
+  }
+}
+

@@ -1,0 +1,129 @@
+/* =====================================================
+   File: styles/components/_buttons.scss
+   ----------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-3) var(--space-5); // 12px 20px
+  border-radius: 999px;
+  border: 2px solid transparent;
+  
+  font-size: var(--font-size-md); // 16px
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Focus styles for accessibility */
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--space-1); // 4px
+  }
+
+  /* Primary button (default) */
+  background-color: var(--action-primary);
+  color: var(--text-inverse);
+
+  /* Ensure <a> elements have consistent colors and no underline */
+  &:link,
+  &:visited {
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: var(--action-primary-hover);
+    color: var(--text-inverse);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(217, 90, 72, 0.35);
+  }
+
+  &:active {
+    background-color: var(--action-primary-active);
+    color: var(--text-inverse);
+    text-decoration: none;
+    transform: translateY(0);
+  }
+
+  &:focus {
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+
+  &:disabled {
+    background-color: var(--action-primary-disabled);
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Secondary button variant */
+.button-secondary {
+  background-color: var(--action-secondary);
+  color: var(--text-inverse);
+
+  &:link,
+  &:visited,
+  &:focus {
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: var(--action-secondary-hover);
+    color: var(--text-inverse);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(114, 53, 46, 0.35);
+  }
+
+  &:active {
+    background-color: var(--action-secondary-active);
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+}
+
+/* Outline button variant */
+.button-outline {
+  background-color: transparent;
+  color: var(--action-primary);
+  border-color: var(--action-primary);
+
+  &:link,
+  &:visited,
+  &:focus {
+    color: var(--action-primary);
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: var(--action-primary);
+    color: var(--text-inverse);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(234, 104, 86, 0.2);
+  }
+
+  &:active {
+    background-color: var(--action-primary-active);
+    border-color: var(--action-primary-active);
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+}
+
+/* Button sizes */
+.button-small {
+  padding: var(--space-2) var(--space-4); // 8px 16px
+  font-size: var(--font-size-sm); // 14px
+}
+
+.button-large {
+  padding: var(--space-4) var(--space-8); // 16px 32px
+  font-size: var(--font-size-lg); // 18px
+}

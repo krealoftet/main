@@ -1,0 +1,113 @@
+/* =====================================================
+   File: styles/base/_typography.scss
+   ----------------------------------------------------- */
+
+/* Typography */
+html {
+  font-size: var(--font-size-md); // 16px
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-3); // 12px
+  color: var(--text-primary);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-3); // 12px
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(var(--font-size-3xl), 4vw, var(--font-size-4xl)); // 32px - 40px
+}
+
+h2 {
+  font-size: clamp(var(--font-size-2xl), 3vw, var(--font-size-3xl)); // 24px - 32px
+}
+
+h3 {
+  font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-2xl)); // 20px - 24px
+}
+
+h4 {
+  font-size: var(--font-size-2xl); // 24px
+  font-weight: var(--font-weight-medium);
+}
+
+h5 {
+  font-size: var(--font-size-xl); // 20px
+  font-weight: var(--font-weight-medium);
+}
+
+h6 {
+  font-size: var(--font-size-lg); // 18px
+  font-weight: var(--font-weight-medium);
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: var(--space-4); // 16px
+  max-width: 65ch;
+}
+
+/* Links */
+a {
+  color: var(--action-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--action-primary-hover);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--space-1); // 4px
+    border-radius: var(--space-1); // 4px
+  }
+}
+
+/* Accessibility */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: calc(var(--space-10) * -1); // -40px
+  left: var(--space-2); // 8px
+  background: var(--action-primary);
+  color: var(--text-inverse);
+  padding: var(--space-2); // 8px
+  z-index: 1000;
+  border-radius: var(--space-1); // 4px
+  
+  &:focus {
+    top: var(--space-2); // 8px
+  }
+}
+

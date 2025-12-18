@@ -1,0 +1,175 @@
+/* =====================================================
+   File: styles/components/_navigation.scss
+   ----------------------------------------------------- */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  // Scrolled state - solid background
+  &.header--scrolled {
+    background-color: var(--bg-surface);
+    border-bottom-color: var(--border-muted);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    .nav-toggle .hamburger,
+    .nav-toggle .hamburger::before,
+    .nav-toggle .hamburger::after {
+      background: var(--text-primary);
+    }
+
+    .logo img {
+      filter: none;
+      height: 56px; // Scale down when scrolled
+    }
+  }
+
+  // Transparent state styling (on hero)
+  &:not(.header--scrolled) {
+    .nav-toggle .hamburger,
+    .nav-toggle .hamburger::before,
+    .nav-toggle .hamburger::after {
+      background: white;
+    }
+
+    .nav-toggle[aria-expanded="true"] .hamburger {
+      background: transparent;
+    }
+  }
+}
+
+.navigation {
+  position: relative;
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; // Center logo
+    position: relative;
+    padding: var(--space-4) var(--space-6); // 16px 24px
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo img {
+    height: 96px;
+    width: auto;
+    transition: height 0.3s ease; // Smooth scale transition
+  }
+
+  .nav-toggle {
+    position: absolute;
+    right: 0; // Align with container's right edge (padding handles offset)
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2); // 8px
+    border-radius: var(--space-2); // 8px
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--bg-muted, rgba(0, 0, 0, 0.05));
+    }
+
+    .hamburger {
+      width: var(--icon-lg); // 24px
+      height: 2px;
+      background: var(--text-primary);
+      position: relative;
+      transition: all 0.3s ease;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: var(--icon-lg); // 24px
+        height: 2px;
+        background: var(--text-primary);
+        transition: all 0.3s ease;
+      }
+
+      &::before {
+        top: calc(var(--space-2) * -1); // -8px
+      }
+
+      &::after {
+        top: var(--space-2); // 8px
+      }
+    }
+
+    &[aria-expanded="true"] .hamburger {
+      background: transparent;
+
+      &::before {
+        transform: rotate(45deg);
+        top: 0;
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+        top: 0;
+      }
+    }
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid var(--border-muted);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+
+    &.nav-menu--open {
+      max-height: 300px;
+      opacity: 1;
+      padding: var(--space-2) 0; // 8px vertical padding
+    }
+
+    li {
+      border-bottom: 1px solid var(--border-muted);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    a {
+      display: block;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: var(--font-size-md); // 16px
+      padding: var(--space-4) var(--space-6); // 16px 24px
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover,
+      &[aria-current="page"] {
+        background-color: var(--bg-muted, rgba(0, 0, 0, 0.03));
+        color: var(--action-primary);
+      }
+    }
+  }
+}
+

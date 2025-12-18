@@ -1,0 +1,38 @@
+/* =====================================================
+   File: styles/semantics/_color-roles.scss
+   ----------------------------------------------------- */
+
+:root {
+  /* Text */
+  --text-primary: var(--carbon-500);
+  --text-secondary: var(--carbon-400);
+  --text-disabled: var(--carbon-300);
+  --text-inverse: var(--white);
+
+  /* Backgrounds */
+  --bg-page: var(--white);
+  --bg-section: var(--seashell);
+  --bg-muted: var(--dust-500);
+  --bg-surface: var(--white);
+
+  /* Borders */
+  --border-subtle: var(--carbon-200);
+  --border-muted: var(--carbon-100);
+
+  /* Primary actions */
+  --action-primary: var(--coral-500);
+  --action-primary-hover: var(--coral-600);
+  --action-primary-active: var(--coral-700);
+  --action-primary-disabled: var(--coral-200);
+
+  /* Secondary / tonal actions */
+  --action-secondary: var(--clay-500);
+  --action-secondary-hover: var(--clay-600);
+  --action-secondary-active: var(--clay-700);
+
+  /* States */
+  --focus-ring: var(--coral-300);
+  --state-warning: var(--coral-700);
+  --state-success: var(--clay-500);
+}
+
