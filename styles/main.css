@@ -1261,7 +1261,6 @@ section {
 .legal-contact address strong {
   color: var(--text-primary);
   font-weight: 600;
-  margin-right: var(--space-1);
 }
 .legal-contact address a {
   color: var(--action-primary);
