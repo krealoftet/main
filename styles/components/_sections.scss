@@ -389,11 +389,11 @@
   ul {
     margin: 0 0 var(--space-4);
     padding-left: var(--space-6); // 24px
+    color: var(--text-secondary);
+    font-size: var(--font-size-md); // 16px
+    line-height: var(--line-height-relaxed);
     
     li {
-      font-size: var(--font-size-md); // 16px
-      line-height: var(--line-height-relaxed);
-      color: var(--text-secondary);
       margin-bottom: var(--space-2); // 8px
       
       &:last-child {
