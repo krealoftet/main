@@ -1333,6 +1333,26 @@ section {
 .legal-section p:last-child {
   margin-bottom: 0;
 }
+.legal-section ul {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-6);
+}
+.legal-section ul li {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+.legal-section ul li:last-child {
+  margin-bottom: 0;
+}
+.legal-section a {
+  color: var(--action-primary);
+  text-decoration: none;
+}
+.legal-section a:hover {
+  text-decoration: underline;
+}
 
 .legal-contact {
   background: var(--bg-section);
