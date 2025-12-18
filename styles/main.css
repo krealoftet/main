@@ -991,6 +991,171 @@ section {
   max-width: none;
 }
 
+/* Praktisk Section */
+.praktisk {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-page);
+}
+@media (min-width: 768px) {
+  .praktisk {
+    padding: var(--space-20) 0;
+  }
+}
+
+.praktisk-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-top: var(--space-12);
+}
+@media (min-width: 900px) {
+  .praktisk-cards {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+.praktisk-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 220px;
+  padding: var(--space-4);
+}
+
+.praktisk-card-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--coral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.praktisk-card-icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--action-primary);
+}
+
+.praktisk-card-highlight {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.praktisk-card-text {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.praktisk-connector {
+  width: 2px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--coral-200), var(--coral-300), var(--coral-200));
+  border-radius: 1px;
+}
+@media (min-width: 900px) {
+  .praktisk-connector {
+    width: 48px;
+    height: 2px;
+    margin-top: var(--space-12);
+    background: linear-gradient(to right, var(--coral-200), var(--coral-300), var(--coral-200));
+  }
+}
+
+.praktisk-note {
+  text-align: center;
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  margin: var(--space-10) auto 0;
+  font-style: italic;
+  max-width: 400px;
+}
+
+.praktisk-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+  padding: var(--space-8);
+  background: var(--bg-section);
+  border-radius: var(--space-4);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 600px) {
+  .praktisk-pricing {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-6);
+    text-align: left;
+  }
+}
+
+.praktisk-pricing-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--coral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.praktisk-pricing-icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--action-primary);
+}
+
+.praktisk-pricing-content {
+  text-align: center;
+}
+@media (min-width: 600px) {
+  .praktisk-pricing-content {
+    text-align: left;
+  }
+}
+
+.praktisk-pricing-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.praktisk-pricing-text {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+.praktisk-pricing-text:last-child {
+  margin-bottom: 0;
+}
+.praktisk-pricing-text strong {
+  color: var(--text-primary);
+}
+
+.praktisk-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
 /* Process Section */
 .process {
   padding: var(--space-20) 0;

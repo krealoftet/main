@@ -2,14 +2,11 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://clayworkshop.com/sitemap.xml
+Sitemap: https://krealoftet.dk/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Disallow common directories that shouldn't be indexed
+# Disallow admin and private directories
 Disallow: /private/
-Disallow: /temp/
 Disallow: /.well-known/
-Disallow: /cgi-bin/
-
