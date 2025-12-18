@@ -1126,14 +1126,15 @@ section {
 
 /* Contact Section */
 .contact {
-  padding: var(--space-20) 0;
+  padding: var(--space-20) 0 0;
   background-color: var(--bg-section);
+  overflow: visible;
 }
 
 .contact-layout {
   display: flex;
   gap: var(--space-16);
-  align-items: center;
+  align-items: flex-start;
 }
 @media (max-width: 900px) {
   .contact-layout {
@@ -1144,6 +1145,8 @@ section {
 
 .contact-personal {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 900px) {
   .contact-personal {
@@ -1161,6 +1164,30 @@ section {
   border-radius: var(--space-4);
   object-fit: cover;
   aspect-ratio: 4/3;
+}
+
+/* Floating image that extends beyond section */
+.contact-image-float {
+  margin-bottom: 0;
+  margin-top: var(--space-8);
+  position: relative;
+  z-index: 10;
+}
+.contact-image-float img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 450px;
+  border-radius: 0;
+  object-fit: contain;
+  aspect-ratio: auto;
+  margin-bottom: calc(var(--space-16) * -1);
+}
+@media (max-width: 900px) {
+  .contact-image-float img {
+    max-height: 350px;
+    margin-bottom: calc(var(--space-12) * -1);
+  }
 }
 
 .contact-quote {
