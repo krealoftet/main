@@ -61,7 +61,7 @@
   <link rel="stylesheet" href="/styles/main.css">
   
   <!-- Security -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' https://unpkg.com https://consent.cookiebot.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' https://unpkg.com https://consent.cookiebot.com; connect-src 'self' https://api.web3forms.com;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -386,7 +386,15 @@
               Vil du høre mere eller booke en plads? Skriv endelig — jeg glæder mig til at byde dig velkommen i vores kreative univers.
             </p>
             
-            <form class="contact-form" aria-labelledby="contact-title">
+            <form class="contact-form" id="contact-form" aria-labelledby="contact-title">
+              <!-- Web3Forms Configuration -->
+              <input type="hidden" name="access_key" value="5dc93b09-e4ea-4671-a904-4f224e21d041">
+              <input type="hidden" name="subject" value="Ny henvendelse via Krealoftet">
+              <input type="hidden" name="from_name" value="Krealoftet">
+              <input type="hidden" name="replyto" value="">
+              <!-- Honeypot Spam Protection -->
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+              
               <div class="form-group">
                 <label for="name" class="form-label">Navn</label>
                 <input 

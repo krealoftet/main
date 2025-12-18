@@ -7,10 +7,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   initNavigation();
   initHeaderScroll();
-  initFormValidation();
+  initContactForm();
   initSmoothScrolling();
   initImageLazyLoading();
   initGalleryCarousel();
+  checkFormSuccess();
 });
 
 /**
@@ -74,73 +75,99 @@ function initHeaderScroll() {
 }
 
 /**
- * Initialize form validation
+ * Initialize contact form for Web3Forms
  */
-function initFormValidation() {
-  const contactForm = document.querySelector('.contact-form');
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
   
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault();
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const emailInput = form.querySelector('[name="email"]');
+  const replyToInput = form.querySelector('[name="replyto"]');
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Update replyto with email value
+    if (emailInput && replyToInput) {
+      replyToInput.value = emailInput.value;
+    }
+    
+    const formData = new FormData(form);
+    
+    // Store original button content
+    const originalHTML = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = `
+      <svg class="button-spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="20" height="20">
+        <circle opacity="0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path opacity="0.75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      Sender...
+    `;
+    submitBtn.disabled = true;
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
       
-      const formData = new FormData(contactForm);
-      const formFields = ['name', 'email', 'message'];
-      let isValid = true;
-
-      // Clear previous errors
-      formFields.forEach(field => {
-        const errorElement = document.getElementById(`${field}-error`);
-        if (errorElement) {
-          errorElement.textContent = '';
-          errorElement.classList.remove('form-error--visible');
-        }
-      });
-
-      // Validate each field
-      formFields.forEach(field => {
-        const input = contactForm.querySelector(`[name="${field}"]`);
-        const value = formData.get(field);
-        const errorElement = document.getElementById(`${field}-error`);
-
-        if (!value || value.trim() === '') {
-          showFieldError(errorElement, `${capitalizeFirst(field)} is required.`);
-          isValid = false;
-        } else if (field === 'email' && !isValidEmail(value)) {
-          showFieldError(errorElement, 'Please enter a valid email address.');
-          isValid = false;
-        }
-      });
-
-      if (isValid) {
-        // Here you would typically send the form data to a server
+      const data = await response.json();
+      
+      if (response.ok) {
         showSuccessMessage();
-        contactForm.reset();
+        form.reset();
+      } else {
+        showErrorMessage(data.message || 'Der opstod en fejl. Prøv igen.');
       }
-    });
-  }
+    } catch (error) {
+      showErrorMessage('Noget gik galt. Prøv venligst igen.');
+    } finally {
+      submitBtn.innerHTML = originalHTML;
+      submitBtn.disabled = false;
+    }
+  });
 }
 
 /**
- * Show field error message
- * @param {HTMLElement} errorElement 
- * @param {string} message 
+ * Check for form submission success via URL parameter (fallback)
  */
-function showFieldError(errorElement, message) {
-  if (errorElement) {
-    errorElement.textContent = message;
-    errorElement.classList.add('form-error--visible');
+function checkFormSuccess() {
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  if (urlParams.get('success') === 'true') {
+    showSuccessMessage();
+    const newUrl = window.location.pathname + window.location.hash;
+    window.history.replaceState({}, document.title, newUrl);
   }
 }
+
 
 /**
  * Show success message after form submission
  */
 function showSuccessMessage() {
-  // Create temporary success message
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  
+  // Remove any existing messages
+  removeFormMessages(form);
+  
+  // Create success message
   const successDiv = document.createElement('div');
-  successDiv.className = 'form-success';
-  successDiv.textContent = 'Thank you! Your message has been sent successfully.';
+  successDiv.className = 'form-message form-success';
+  successDiv.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+    </svg>
+    <span>Tak for din besked! Vi vender tilbage hurtigst muligt.</span>
+  `;
   successDiv.style.cssText = `
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     background: var(--state-success);
     color: white;
     padding: 1rem;
@@ -149,33 +176,61 @@ function showSuccessMessage() {
     font-weight: 500;
   `;
 
-  const form = document.querySelector('.contact-form');
   form.insertBefore(successDiv, form.firstChild);
 
-  // Remove after 5 seconds
+  // Remove after 8 seconds
   setTimeout(() => {
     successDiv.remove();
-  }, 5000);
+  }, 8000);
 }
 
 /**
- * Validate email format
- * @param {string} email 
- * @returns {boolean}
+ * Show error message after form submission failure
  */
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+function showErrorMessage(message) {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  
+  // Remove any existing messages
+  removeFormMessages(form);
+  
+  // Create error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'form-message form-error';
+  errorDiv.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+    </svg>
+    <span>${message}</span>
+  `;
+  errorDiv.style.cssText = `
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--state-warning);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  `;
+
+  form.insertBefore(errorDiv, form.firstChild);
+
+  // Remove after 8 seconds
+  setTimeout(() => {
+    errorDiv.remove();
+  }, 8000);
 }
 
 /**
- * Capitalize first letter
- * @param {string} str 
- * @returns {string}
+ * Remove existing form messages
  */
-function capitalizeFirst(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+function removeFormMessages(form) {
+  const existingMessages = form.querySelectorAll('.form-message');
+  existingMessages.forEach(msg => msg.remove());
 }
+
 
 /**
  * Initialize smooth scrolling for anchor links
