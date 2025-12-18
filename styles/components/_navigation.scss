@@ -65,7 +65,7 @@
 
   .nav-toggle {
     position: absolute;
-    right: 0; // Align with container's right edge (padding handles offset)
+    right: var(--space-6); // 24px - Match container padding
     top: 50%;
     transform: translateY(-50%);
     display: flex;

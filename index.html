@@ -52,6 +52,7 @@
   <meta name="msapplication-TileColor" content="#ea6856">
   
   <!-- Performance Optimization -->
+  <link rel="preload" href="/assets/images/hero-image-ceramic-art.jpg" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -64,7 +65,7 @@
   <link rel="stylesheet" href="/styles/main.css">
   
   <!-- Security -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embedsocial.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://unpkg.com https://consent.cookiebot.com https://embedsocial.com; connect-src 'self' https://api.web3forms.com https://embedsocial.com; frame-src https://embedsocial.com https://www.instagram.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' https://unpkg.com https://consent.cookiebot.com; connect-src 'self' https://api.web3forms.com;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -83,7 +84,7 @@
     "telephone": "+4542481606",
     "email": "johannesommer@live.dk",
     "image": "https://krealoftet.dk/assets/images/krealoftet_logo.png",
-    "priceRange": "295-375 DKK",
+    "priceRange": "100-300 DKK",
     "currenciesAccepted": "DKK",
     "paymentAccepted": "MobilePay, Kontant, Bankoverførsel",
     "address": {
@@ -143,10 +144,10 @@
         </button>
         
         <ul class="nav-menu" id="nav-menu" role="list">
-          <li><a href="#about">Om Krealoftet</a></li>
-          <li><a href="#gallery">Inspiration</a></li>
-          <li><a href="#process">Sådan foregår det</a></li>
-          <li><a href="#contact">Skriv til os</a></li>
+          <li><a href="#vaerkstedet">Om værkstedet</a></li>
+          <li><a href="#praktisk">Praktisk</a></li>
+          <li><a href="#om-mig">Om mig</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </div>
     </nav>
@@ -159,16 +160,16 @@
       <div class="hero-container">
         <div class="hero-content">
           <h1 id="hero-title" class="hero-title">
-            Tid til fordybelse. Tid til kreativitet.
+            Tid til fordybelse. Tid til keramik.
           </h1>
           <p class="hero-description">
             Et lille, hyggeligt værksted, hvor du kan fordybe dig i at male skåle og kopper, som jeg har drejet.
           </p>
           <div class="hero-actions">
-            <a href="#gallery" class="button button-primary">
+            <a href="#keramik" class="button button-primary">
               Udforsk Keramikken
             </a>
-            <a href="#contact" class="button button-secondary">
+            <a href="#kontakt" class="button button-secondary">
               Book En Kreativ Pause
             </a>
           </div>
@@ -177,7 +178,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" aria-labelledby="about-title">
+    <section id="vaerkstedet" class="about" aria-labelledby="about-title">
       <div class="container">
         <div class="about-content">
           <div class="about-text">
@@ -217,8 +218,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
               </svg>
             </div>
-            <span class="praktisk-card-highlight">Maks 8 personer</span>
-            <p class="praktisk-card-text">Tag kollegaer, søskende eller venner med til et par hyggelige timer</p>
+            <span class="praktisk-card-highlight">Maks. 8 personer</span>
+            <p class="praktisk-card-text">Tag kollegaer, søskende eller venner med til et par hyggelige timer i rolige omgivelser.</p>
           </div>
           
           <div class="praktisk-connector" aria-hidden="true"></div>
@@ -231,7 +232,7 @@
               </svg>
             </div>
             <span class="praktisk-card-highlight">Hygge & fordybelse</span>
-            <p class="praktisk-card-text">Hænderne arbejder, hovedet slapper af – i dit eget tempo</p>
+            <p class="praktisk-card-text">Hænderne arbejder, og hovedet slapper af – i dit helt eget tempo.</p>
           </div>
           
           <div class="praktisk-connector" aria-hidden="true"></div>
@@ -244,7 +245,7 @@
               </svg>
             </div>
             <span class="praktisk-card-highlight">Kaffe & sødt</span>
-            <p class="praktisk-card-text">Jeg sørger for kaffe på kanden og lidt sødt til ganen</p>
+            <p class="praktisk-card-text">Jeg sørger for kaffe på kanden og lidt sødt til ganen undervejs.</p>
           </div>
           
           <div class="praktisk-connector" aria-hidden="true"></div>
@@ -257,12 +258,12 @@
               </svg>
             </div>
             <span class="praktisk-card-highlight">Unikt keramik</span>
-            <p class="praktisk-card-text">Vælg fra hylden – ingen to ting er ens. Pris inkl. maling & brænding</p>
+            <p class="praktisk-card-text">Vælg dit keramik fra hylden – de fleste dele har deres eget udtryk.</p>
           </div>
         </div>
         
         <p class="praktisk-note">
-          Dine færdige ting kan hentes inden for 10 hverdage
+          Dine færdige ting kan hentes inden for 10 hverdage, når de har været igennem glasering og brænding.
         </p>
         
         <div class="praktisk-pricing">
@@ -274,25 +275,26 @@
           <div class="praktisk-pricing-content">
             <h3 class="praktisk-pricing-title">Priser</h3>
             <p class="praktisk-pricing-text">
-              <strong>100 kr. pr. person</strong> for at deltage – inkl. kaffe og lidt sødt.<br>
-              Ønsker I andet at slukke tørsten i, er I velkomne til selv at medbringe dette.
+              <strong>100 kr. pr. person</strong> for at deltage (inkl. kaffe og lidt sødt).<br>
+              Ønsker I andet at slukke tørsten i, er I velkomne til selv at medbringe det.
             </p>
             <p class="praktisk-pricing-text">
-              <strong>Keramik fra 100 kr.</strong> – prisen inkluderer altid maling og brænding.
+              <strong>Keramik fra 100 kr. pr. del</strong><br>
+              Prisen inkluderer altid maling og brænding.
             </p>
           </div>
         </div>
         
         <div class="praktisk-cta">
-          <a href="#contact" class="button button-primary">
+          <a href="#kontakt" class="button button-primary">
             Book din plads
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Gallery Preview -->
-    <section id="gallery" class="gallery-preview" aria-labelledby="gallery-title">
+    <!-- Keramik Section -->
+    <section id="keramik" class="gallery-preview" aria-labelledby="gallery-title">
       <div class="container">
         <header class="section-header">
           <h2 id="gallery-title" class="section-title">Vælg din keramik</h2>
@@ -317,7 +319,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    1,5–2 timer
+                    2 timer
                   </span>
                 </div>
                 <div class="product-card-info">
@@ -327,7 +329,7 @@
                   </div>
                   <p class="product-card-price">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value">295 DKK</span>
+                    <span class="price-value">150 DKK</span>
                   </p>
                 </div>
               </article>
@@ -345,7 +347,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    2–2,5 timer
+                    2 timer
                   </span>
                 </div>
                 <div class="product-card-info">
@@ -355,7 +357,7 @@
                   </div>
                   <p class="product-card-price">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value">375 DKK</span>
+                    <span class="price-value">200 DKK</span>
                   </p>
                 </div>
               </article>
@@ -383,7 +385,7 @@
                   </div>
                   <p class="product-card-price">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value">325 DKK</span>
+                    <span class="price-value">175 DKK</span>
                   </p>
                 </div>
               </article>
@@ -395,7 +397,7 @@
     </section>
 
     <!-- Process Section -->
-    <section id="process" class="process" aria-labelledby="process-title">
+    <section id="proces" class="process" aria-labelledby="process-title">
       <div class="container">
         <header class="section-header">
           <h2 id="process-title" class="section-title">Sådan foregår det</h2>
@@ -480,11 +482,61 @@
         </header>
         
         <div class="instagram-widget">
-          <!-- EmbedSocial Instagram Feed -->
-          <div class="embedsocial-hashtag" data-ref="e23da6a8858b773644e33cf23e0dafd28e3e82df">
-            <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding" href="https://embedsocial.com/social-media-aggregator/" target="_blank" rel="noopener noreferrer" title="Instagram widget">
-              <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial">
-              <div class="es-widget-branding-text">Instagram widget</div>
+          <div class="instagram-placeholder">
+            <div class="instagram-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </div>
+            <h3>@krealoftet_by_sommer</h3>
+            <p>Følg med på Instagram og se hvad vi går og laver på værkstedet.</p>
+            <a href="https://instagram.com/krealoftet_by_sommer" class="button button-primary" target="_blank" rel="noopener noreferrer">
+              Følg os på Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Om Mig Section -->
+    <section id="om-mig" class="about-me" aria-labelledby="about-me-title">
+      <div class="container">
+        <div class="about-me-layout">
+          <div class="about-me-image">
+            <img 
+              src="/assets/images/ceramic-workshop-creation.jpg" 
+              alt="Johanne Sommer, indehaver af Krealoftet keramikværksted i Barrit"
+              width="500"
+              height="600"
+              loading="lazy"
+            >
+          </div>
+          <div class="about-me-content">
+            <h2 id="about-me-title" class="section-title">Lidt om mig...</h2>
+            <div class="about-me-text">
+              <p>
+                Først og fremmest – hej!
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ea6856" class="wave-icon" aria-hidden="true" style="display: inline-block; width: 1.25em; height: 1.25em; vertical-align: middle; margin-left: 0.25em; transform: rotate(-15deg);">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318V4.575" />
+                </svg>
+                <br>
+                Jeg hedder Johanne, og jeg er hjertet bag Krealoftet.
+              </p>
+              <p>
+                Kreative sysler har fulgt mig det meste af mit voksne liv. Jeg har altid haft glæde i at skabe med hænderne, hvad enten det er i haven, i køkkenet eller med hæklenålen i hånden. For nylig er jeg blevet bidt af keramik – og her oplever jeg igen den samme lille magi.
+              </p>
+              <p>
+                Der er noget helt særligt ved at fordybe sig, lade fingrene arbejde og mærke roen brede sig. At skabe noget, man kan tage med hjem og bruge i hverdagen – et minde, der får lov at leve videre som en del af de små ting, der gør hverdagen lidt mere hyggelig.
+              </p>
+              <p>
+                Mit værksted ligger på loftet af mit hjem i Barrit, hvor jeg bor sammen med min mand. Et lille, hyggeligt landsted, som vi deler med vores høns og to katte. Her er ingen præstationskrav – kun tid til fordybelse, afslapning og hjernero.
+              </p>
+              <p>
+                Jeg glæder mig til at byde dig velkommen i Krealoftet.
+              </p>
+            </div>
+            <a href="#kontakt" class="button button-primary">
+              Skriv til mig
             </a>
           </div>
         </div>
@@ -492,11 +544,10 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact" aria-labelledby="contact-title">
+    <section id="kontakt" class="contact contact-simple" aria-labelledby="contact-title">
       <div class="container">
-        <div class="contact-layout">
-          <div class="contact-form-wrapper">
-            <h2 id="contact-title" class="contact-title">Skab hyggestunderne sammen</h2>
+        <div class="contact-form-wrapper">
+            <h2 id="contact-title" class="contact-title">Lad os finde en tid i kalenderen</h2>
             <p class="contact-intro">
               Vil du høre mere eller booke en plads? Skriv endelig — jeg glæder mig til at byde dig velkommen i vores kreative univers.
             </p>
@@ -557,24 +608,6 @@
               </button>
             </form>
           </div>
-          
-          <div class="contact-personal">
-            <div class="contact-portrait">
-              <div class="contact-portrait-accent"></div>
-              <img 
-                src="/assets/images/krealoftet-by-sommer.png" 
-                alt="Johanne Sommer, indehaver af Krealoftet keramikværksted i Barrit"
-                width="280"
-                height="320"
-                loading="lazy"
-              >
-            </div>
-            <blockquote class="contact-quote">
-              <p>"Der er noget magisk ved at samles om et bord med venner, lade kreativiteten flyde og male noget helt unikt — bare dit eget. Ingen perfektion kræves, kun tid til at nyde processen og få et dejligt afbræk fra hverdagen."</p>
-              <cite>— Johanne, Krealoftet</cite>
-            </blockquote>
-          </div>
-        </div>
       </div>
     </section>
   </main>
@@ -617,17 +650,6 @@
   <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
   <script src="/js/main.js" defer></script>
   
-  <!-- EmbedSocial Instagram Widget -->
-  <script>
-    (function(d, s, id) {
-      var js;
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://embedsocial.com/cdn/ht.js";
-      d.getElementsByTagName("head")[0].appendChild(js);
-    }(document, "script", "EmbedSocialHashtagScript"));
-  </script>
   
   <!-- Service Worker Registration -->
   <script>

@@ -183,7 +183,7 @@
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--text-secondary);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
   
   &:last-child {
     margin-bottom: 0;
@@ -192,6 +192,12 @@
   strong {
     color: var(--text-primary);
   }
+}
+
+.praktisk-pricing-note {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-style: italic;
 }
 
 .praktisk-cta {
@@ -352,6 +358,81 @@
   }
 }
 
+/* About Me Section */
+.about-me {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-page);
+  
+  @media (min-width: 768px) {
+    padding: var(--space-20) 0;
+  }
+}
+
+.about-me-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-16);
+  }
+}
+
+.about-me-image {
+  flex: 1;
+  
+  @media (min-width: 768px) {
+    flex: 0 0 40%;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--space-4);
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.about-me-content {
+  flex: 1;
+  
+  .section-title {
+    text-align: left;
+    margin-bottom: var(--space-6);
+  }
+}
+
+.about-me-text {
+  margin-bottom: var(--space-8);
+  
+  p {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+    
+    &:first-child {
+      font-size: var(--font-size-lg);
+      color: var(--text-primary);
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    @media (min-width: 768px) {
+      font-size: var(--font-size-lg);
+      
+      &:first-child {
+        font-size: var(--font-size-xl);
+      }
+    }
+  }
+}
+
 /* Contact Section — Mobile First */
 .contact {
   padding-top: var(--space-16);
@@ -361,6 +442,19 @@
   @media (min-width: 768px) {
     padding-top: var(--space-20);
     padding-bottom: var(--space-20);
+  }
+}
+
+/* Simple contact form (no sidebar) */
+.contact-simple {
+  .contact-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contact-title,
+  .contact-intro {
+    text-align: center;
   }
 }
 

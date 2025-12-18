@@ -1,13 +1,13 @@
 // Service Worker for Clay Workshop
-const CACHE_NAME = 'clay-workshop-v1';
+const CACHE_NAME = 'krealoftet-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/styles/main.css',
   '/js/main.js',
-  '/assets/images/logo.svg',
-  '/assets/images/hero-pottery.jpg',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap'
+  '/assets/images/krealoftet_logo.png',
+  '/assets/images/ceramic-workshop-creation.jpg',
+  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shantell+Sans:wght@500&display=swap'
 ];
 
 // Install event
