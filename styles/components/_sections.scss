@@ -258,8 +258,12 @@
 
 /* Legal Pages (Handelsbetingelser, Privatlivspolitik) */
 .legal-page {
-  padding: var(--space-20) 0; // 80px
+  padding: var(--space-24) 0; // 96px
   min-height: calc(100vh - 200px); // Ensure footer stays at bottom
+  
+  .container {
+    padding: var(--space-12) var(--space-6) 0;
+  }
 }
 
 .legal-header {

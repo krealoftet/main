@@ -1204,8 +1204,11 @@ section {
 
 /* Legal Pages (Handelsbetingelser, Privatlivspolitik) */
 .legal-page {
-  padding: var(--space-20) 0;
+  padding: var(--space-24) 0;
   min-height: calc(100vh - 200px);
+}
+.legal-page .container {
+  padding: var(--space-12) var(--space-6) 0;
 }
 
 .legal-header {
