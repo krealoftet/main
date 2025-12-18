@@ -1202,6 +1202,79 @@ section {
   max-width: none;
 }
 
+/* Legal Pages (Handelsbetingelser, Privatlivspolitik) */
+.legal-page {
+  padding: var(--space-20) 0;
+  min-height: calc(100vh - 200px);
+}
+
+.legal-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.legal-title {
+  font-size: var(--font-size-4xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.legal-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.legal-section {
+  margin-bottom: var(--space-10);
+}
+.legal-section h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--action-primary);
+}
+.legal-section p {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-contact {
+  background: var(--bg-section);
+  padding: var(--space-6);
+  border-radius: var(--space-3);
+}
+.legal-contact address {
+  font-style: normal;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+}
+.legal-contact address strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.legal-contact address a {
+  color: var(--action-primary);
+  text-decoration: none;
+}
+.legal-contact address a:hover {
+  text-decoration: underline;
+}
+
+.legal-back {
+  text-align: center;
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border-default);
+}
+
 /* =====================================================
    File: styles/components/_footer.scss
    ----------------------------------------------------- */

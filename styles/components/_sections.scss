@@ -256,3 +256,83 @@
   max-width: none;
 }
 
+/* Legal Pages (Handelsbetingelser, Privatlivspolitik) */
+.legal-page {
+  padding: var(--space-20) 0; // 80px
+  min-height: calc(100vh - 200px); // Ensure footer stays at bottom
+}
+
+.legal-header {
+  text-align: center;
+  margin-bottom: var(--space-12); // 48px
+}
+
+.legal-title {
+  font-size: var(--font-size-4xl); // 36px
+  color: var(--text-primary);
+  margin-bottom: var(--space-4); // 16px
+}
+
+.legal-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.legal-section {
+  margin-bottom: var(--space-10); // 40px
+  
+  h2 {
+    font-size: var(--font-size-xl); // 20px
+    color: var(--text-primary);
+    margin-bottom: var(--space-4); // 16px
+    padding-bottom: var(--space-2); // 8px
+    border-bottom: 2px solid var(--action-primary);
+  }
+  
+  p {
+    font-size: var(--font-size-md); // 16px
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4); // 16px
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.legal-contact {
+  background: var(--bg-section);
+  padding: var(--space-6); // 24px
+  border-radius: var(--space-3); // 12px
+  
+  address {
+    font-style: normal;
+    font-size: var(--font-size-md); // 16px
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    
+    strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: var(--space-2); // 8px
+    }
+    
+    a {
+      color: var(--action-primary);
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.legal-back {
+  text-align: center;
+  margin-top: var(--space-12); // 48px
+  padding-top: var(--space-8); // 32px
+  border-top: 1px solid var(--border-default);
+}
+
