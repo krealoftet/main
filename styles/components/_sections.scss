@@ -178,86 +178,121 @@
   }
 }
 
-/* Contact Section */
+/* Contact Section — Mobile First */
 .contact {
-  padding: var(--space-20) 0 0; // 80px top, 0 bottom for floating image
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
   background-color: var(--bg-section);
-  overflow: visible; // Allow image to extend beyond
+  
+  @media (min-width: 768px) {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
 }
 
 .contact-layout {
   display: flex;
-  gap: var(--space-16); // 64px
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-8);
   
-  @media (max-width: 900px) {
-    flex-direction: column;
-    gap: var(--space-12); // 48px
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: var(--space-12);
+    align-items: flex-start;
+  }
+  
+  @media (min-width: 1024px) {
+    gap: var(--space-16);
   }
 }
 
 .contact-personal {
-  flex: 1;
+  width: 100%;
+  order: -1; // Quote appears first on mobile
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
   
-  @media (max-width: 900px) {
-    width: 100%;
-    max-width: 500px;
+  @media (min-width: 768px) {
+    flex: 1;
+    order: 1; // Moves to second column on desktop
+    align-items: flex-start;
+    gap: var(--space-8);
   }
 }
 
-.contact-image {
-  margin-bottom: var(--space-6); // 24px
-  
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--space-4); // 16px
-    object-fit: cover;
-    aspect-ratio: 4 / 3;
-  }
-}
-
-/* Floating image that extends beyond section */
-.contact-image-float {
-  margin-bottom: 0;
-  margin-top: var(--space-8); // 32px
+/* Portrait with accent background */
+.contact-portrait {
   position: relative;
-  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 200px;
+  height: 200px;
   
-  img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 450px;
-    border-radius: 0;
-    object-fit: contain;
-    aspect-ratio: auto;
-    margin-bottom: calc(var(--space-16) * -1); // Extend 64px into footer
-    
-    @media (max-width: 900px) {
-      max-height: 350px;
-      margin-bottom: calc(var(--space-12) * -1); // Less overlap on mobile
-    }
+  @media (min-width: 768px) {
+    width: 240px;
+    height: 240px;
+  }
+  
+  @media (min-width: 1024px) {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+.contact-portrait-accent {
+  position: absolute;
+  inset: 0;
+  background: var(--coral-100);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.contact-portrait img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: contain;
+  object-position: bottom center;
+  border-radius: 50% 50% 0 0;
+  
+  @media (min-width: 768px) {
+    max-height: 280px;
+  }
+  
+  @media (min-width: 1024px) {
+    max-height: 320px;
   }
 }
 
 .contact-quote {
   margin: 0;
   padding: 0;
+  text-align: center;
+  
+  @media (min-width: 768px) {
+    text-align: left;
+  }
   
   p {
-    font-size: var(--font-size-lg); // 18px
+    font-size: var(--font-size-md);
     font-style: italic;
     line-height: var(--line-height-relaxed);
     color: var(--text-secondary);
-    margin-bottom: var(--space-3); // 12px
+    margin-bottom: var(--space-3);
     max-width: none;
+    
+    @media (min-width: 768px) {
+      font-size: var(--font-size-lg);
+    }
   }
   
   cite {
-    font-size: var(--font-size-sm); // 14px
+    font-size: var(--font-size-sm);
     font-style: normal;
     font-weight: var(--font-weight-medium);
     color: var(--text-primary);
@@ -265,22 +300,42 @@
 }
 
 .contact-form-wrapper {
-  flex: 1;
+  width: 100%;
+  padding: var(--space-6);
+  background: var(--bg-page);
+  border-radius: var(--space-4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   
-  @media (max-width: 900px) {
-    width: 100%;
+  @media (min-width: 768px) {
+    flex: 1;
     max-width: 500px;
+    padding: var(--space-8);
+    order: 0; // Form is first column on desktop
+  }
+  
+  @media (min-width: 1024px) {
+    padding: var(--space-10);
   }
 }
 
 .contact-title {
-  margin-bottom: var(--space-3); // 12px
+  margin-bottom: var(--space-2);
+  
+  @media (min-width: 768px) {
+    margin-bottom: var(--space-3);
+  }
 }
 
 .contact-intro {
+  font-size: var(--font-size-sm);
   color: var(--text-secondary);
-  margin-bottom: var(--space-8); // 32px
+  margin-bottom: var(--space-6);
   max-width: none;
+  
+  @media (min-width: 768px) {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-8);
+  }
 }
 
 /* Legal Pages (Handelsbetingelser, Privatlivspolitik) */

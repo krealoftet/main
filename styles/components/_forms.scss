@@ -4,11 +4,7 @@
 
 /* Form Styles */
 .contact-form {
-  background: var(--bg-surface);
-  padding: var(--space-8); // 32px
-  border-radius: var(--space-4); // 16px
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--border-muted);
+  // Wrapper provides padding, shadow, border - form just handles spacing
 }
 
 .form-group {

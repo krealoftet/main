@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* =====================================================
    File: styles/main.scss
    ----------------------------------------------------- */
@@ -901,14 +902,6 @@ section {
    File: styles/components/_forms.scss
    ----------------------------------------------------- */
 /* Form Styles */
-.contact-form {
-  background: var(--bg-surface);
-  padding: var(--space-8);
-  border-radius: var(--space-4);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--border-muted);
-}
-
 .form-group {
   margin-bottom: var(--space-6);
 }
@@ -1124,83 +1117,127 @@ section {
   transform: translateY(-2px);
 }
 
-/* Contact Section */
+/* Contact Section — Mobile First */
 .contact {
-  padding: var(--space-20) 0 0;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
   background-color: var(--bg-section);
-  overflow: visible;
+}
+@media (min-width: 768px) {
+  .contact {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
 }
 
 .contact-layout {
   display: flex;
-  gap: var(--space-16);
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-8);
 }
-@media (max-width: 900px) {
+@media (min-width: 768px) {
   .contact-layout {
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--space-12);
+    align-items: flex-start;
+  }
+}
+@media (min-width: 1024px) {
+  .contact-layout {
+    gap: var(--space-16);
   }
 }
 
 .contact-personal {
-  flex: 1;
+  width: 100%;
+  order: -1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
 }
-@media (max-width: 900px) {
+@media (min-width: 768px) {
   .contact-personal {
-    width: 100%;
-    max-width: 500px;
+    flex: 1;
+    order: 1;
+    align-items: flex-start;
+    gap: var(--space-8);
   }
 }
 
-.contact-image {
-  margin-bottom: var(--space-6);
+/* Portrait with accent background */
+.contact-portrait {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 200px;
+  height: 200px;
 }
-.contact-image img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--space-4);
-  object-fit: cover;
-  aspect-ratio: 4/3;
+@media (min-width: 768px) {
+  .contact-portrait {
+    width: 240px;
+    height: 240px;
+  }
+}
+@media (min-width: 1024px) {
+  .contact-portrait {
+    width: 280px;
+    height: 280px;
+  }
 }
 
-/* Floating image that extends beyond section */
-.contact-image-float {
-  margin-bottom: 0;
-  margin-top: var(--space-8);
+.contact-portrait-accent {
+  position: absolute;
+  inset: 0;
+  background: var(--coral-100);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.contact-portrait img {
   position: relative;
-  z-index: 10;
-}
-.contact-image-float img {
-  width: auto;
-  max-width: 100%;
+  z-index: 2;
+  width: 100%;
   height: auto;
-  max-height: 450px;
-  border-radius: 0;
+  max-height: 240px;
   object-fit: contain;
-  aspect-ratio: auto;
-  margin-bottom: calc(var(--space-16) * -1);
+  object-position: bottom center;
+  border-radius: 50% 50% 0 0;
 }
-@media (max-width: 900px) {
-  .contact-image-float img {
-    max-height: 350px;
-    margin-bottom: calc(var(--space-12) * -1);
+@media (min-width: 768px) {
+  .contact-portrait img {
+    max-height: 280px;
+  }
+}
+@media (min-width: 1024px) {
+  .contact-portrait img {
+    max-height: 320px;
   }
 }
 
 .contact-quote {
   margin: 0;
   padding: 0;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .contact-quote {
+    text-align: left;
+  }
 }
 .contact-quote p {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-style: italic;
   line-height: var(--line-height-relaxed);
   color: var(--text-secondary);
   margin-bottom: var(--space-3);
   max-width: none;
+}
+@media (min-width: 768px) {
+  .contact-quote p {
+    font-size: var(--font-size-lg);
+  }
 }
 .contact-quote cite {
   font-size: var(--font-size-sm);
@@ -1210,23 +1247,46 @@ section {
 }
 
 .contact-form-wrapper {
-  flex: 1;
+  width: 100%;
+  padding: var(--space-6);
+  background: var(--bg-page);
+  border-radius: var(--space-4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
-@media (max-width: 900px) {
+@media (min-width: 768px) {
   .contact-form-wrapper {
-    width: 100%;
+    flex: 1;
     max-width: 500px;
+    padding: var(--space-8);
+    order: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .contact-form-wrapper {
+    padding: var(--space-10);
   }
 }
 
 .contact-title {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+@media (min-width: 768px) {
+  .contact-title {
+    margin-bottom: var(--space-3);
+  }
 }
 
 .contact-intro {
+  font-size: var(--font-size-sm);
   color: var(--text-secondary);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   max-width: none;
+}
+@media (min-width: 768px) {
+  .contact-intro {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-8);
+  }
 }
 
 /* Legal Pages (Handelsbetingelser, Privatlivspolitik) */
@@ -1309,9 +1369,15 @@ section {
    ----------------------------------------------------- */
 /* Footer Styles */
 .footer {
+  position: relative;
   background-color: var(--bg-page);
   border-top: 1px solid var(--border-subtle);
-  padding: var(--space-12) 0 var(--space-8);
+  padding: var(--space-20) 0 var(--space-8);
+}
+@media (min-width: 768px) {
+  .footer {
+    padding-top: var(--space-12);
+  }
 }
 
 .footer-content {

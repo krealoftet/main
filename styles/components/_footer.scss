@@ -4,9 +4,14 @@
 
 /* Footer Styles */
 .footer {
+  position: relative;
   background-color: var(--bg-page);
   border-top: 1px solid var(--border-subtle);
-  padding: var(--space-12) 0 var(--space-8); // 48px 0 32px
+  padding: var(--space-20) 0 var(--space-8); // 80px top, 32px bottom
+  
+  @media (min-width: 768px) {
+    padding-top: var(--space-12); // 96px
+  }
 }
 
 .footer-content {
