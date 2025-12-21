@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <!-- Cookiebot Consent Management -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2b7fecf7-7810-484a-8b7b-f1e2af669cd8" data-blockingmode="auto" type="text/javascript"></script>
+  <!-- Cookiebot Consent Management - deferred to not block rendering -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2b7fecf7-7810-484a-8b7b-f1e2af669cd8" data-blockingmode="auto" type="text/javascript" defer></script>
   
   <!-- Primary Meta Tags -->
   <title>Krealoftet by Sommer – Mal din egen keramik i Barrit | Kreativ workshop</title>
@@ -43,6 +43,7 @@
   <meta property="twitter:site" content="@krealoftet">
   
   <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
@@ -51,8 +52,8 @@
   <meta name="theme-color" content="#ea6856">
   <meta name="msapplication-TileColor" content="#ea6856">
   
-  <!-- Performance Optimization -->
-  <link rel="preload" href="/assets/images/hero-image-ceramic-art.jpg" as="image" fetchpriority="high">
+  <!-- Performance Optimization: Preload LCP hero image -->
+  <link rel="preload" href="/assets/images/hero-image-ceramic-art.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="/assets/images/hero-image-ceramic-art-mobile.webp 768w, /assets/images/hero-image-ceramic-art.webp 1920w" imagesizes="100vw">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -212,6 +213,28 @@
   <main id="main-content" role="main">
     <!-- Hero Section -->
     <section class="hero" aria-labelledby="hero-title">
+      <!-- LCP Hero Image: Prioritized for Core Web Vitals -->
+      <picture class="hero-image">
+        <source 
+          media="(max-width: 768px)" 
+          srcset="/assets/images/hero-image-ceramic-art-mobile.webp" 
+          type="image/webp"
+        >
+        <source 
+          srcset="/assets/images/hero-image-ceramic-art.webp" 
+          type="image/webp"
+        >
+        <img 
+          src="/assets/images/hero-image-ceramic-art.jpg" 
+          alt="Hånddrejet keramik i et hyggeligt værksted – mal din egen kop eller skål hos Krealoftet"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        >
+      </picture>
+      <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-container">
         <div class="hero-content">
           <h1 id="hero-title" class="hero-title">

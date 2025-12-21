@@ -5,14 +5,26 @@
 
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
+  // Critical: Initialize immediately (above-the-fold interactions)
   initNavigation();
   initHeaderScroll();
-  initContactForm();
   initSmoothScrolling();
-  initImageLazyLoading();
-  initGalleryCarousel();
-  checkFormSuccess();
+  
+  // Non-critical: Defer to improve TTI
+  requestIdleCallback(() => {
+    initContactForm();
+    initImageLazyLoading();
+    checkFormSuccess();
+  }, { timeout: 2000 });
+  
+  // Carousel: Initialize only when visible (IntersectionObserver)
+  initCarouselOnVisible();
 });
+
+// Polyfill for requestIdleCallback
+window.requestIdleCallback = window.requestIdleCallback || function(cb) {
+  return setTimeout(cb, 1);
+};
 
 /**
  * Initialize mobile navigation
@@ -282,6 +294,35 @@ function initImageLazyLoading() {
 
     const lazyImages = document.querySelectorAll('img[data-src]');
     lazyImages.forEach(img => imageObserver.observe(img));
+  }
+}
+
+/**
+ * Initialize carousel only when it enters the viewport
+ * Improves TTI by deferring non-critical JS
+ */
+function initCarouselOnVisible() {
+  const emblaNode = document.querySelector('.gallery-carousel');
+  if (!emblaNode) return;
+  
+  // Use IntersectionObserver to lazy-init the carousel
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initGalleryCarousel();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '200px 0px', // Start loading 200px before visible
+      threshold: 0
+    });
+    
+    observer.observe(emblaNode);
+  } else {
+    // Fallback for older browsers
+    initGalleryCarousel();
   }
 }
 
