@@ -17,6 +17,15 @@
   cursor: pointer;
   transition: all 0.2s ease;
   
+  // Mobile touch target optimization (min 48x48px)
+  min-height: 48px;
+  min-width: 48px;
+  
+  // Reduce animation on mobile for better performance
+  @media (max-width: 768px) {
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  
   /* Focus styles for accessibility */
   &:focus-visible {
     outline: 2px solid var(--focus-ring);
@@ -40,6 +49,12 @@
     text-decoration: none;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(217, 90, 72, 0.35);
+    
+    // Disable transform on mobile (reduces CLS and improves perf)
+    @media (max-width: 768px) {
+      transform: none;
+      box-shadow: none;
+    }
   }
 
   &:active {

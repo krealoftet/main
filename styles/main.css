@@ -133,6 +133,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Reduced motion for accessibility and mobile performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 img,
 picture,
 video,
@@ -365,6 +376,15 @@ section {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-height: 48px;
+  min-width: 48px;
+}
+@media (max-width: 768px) {
+  .button {
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+}
+.button {
   /* Focus styles for accessibility */
 }
 .button:focus-visible {
@@ -387,6 +407,12 @@ section {
   text-decoration: none;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(217, 90, 72, 0.35);
+}
+@media (max-width: 768px) {
+  .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 .button:active {
   background-color: var(--action-primary-active);
@@ -572,9 +598,11 @@ section {
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-2);
+  padding: var(--space-3);
   border-radius: var(--space-2);
   transition: background-color 0.2s ease;
+  min-width: 48px;
+  min-height: 48px;
 }
 .navigation .nav-toggle:hover {
   background-color: var(--bg-muted, rgba(0, 0, 0, 0.05));
