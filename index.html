@@ -124,6 +124,61 @@
     }
   }
   </script>
+  
+  <!-- Product Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Keramik til maling",
+    "description": "Hånddrejet keramik du selv maler i værkstedet. Alle priser inkl. maling, glasering og brænding.",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "position": 1,
+        "name": "Hygge-skålen",
+        "description": "En hånddrejet skål, du selv maler i værkstedet. Perfekt til morgenmad, snacks eller små hverdagsøjeblikke.",
+        "image": "https://krealoftet.dk/assets/images/image-2@2x.png",
+        "offers": {
+          "@type": "Offer",
+          "price": "150",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "LocalBusiness",
+            "name": "Krealoftet by Sommer"
+          }
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 2,
+        "name": "Delestunden – stor skål",
+        "description": "En større hånddrejet skål med masser af plads til leg med farver og udtryk.",
+        "image": "https://krealoftet.dk/assets/images/image-1@2x.png",
+        "offers": {
+          "@type": "Offer",
+          "price": "200",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 3,
+        "name": "Ro & Te-koppen",
+        "description": "En rummelig, hånddrejet kop til te, kaffe eller bare en stille stund.",
+        "image": "https://krealoftet.dk/assets/images/image-3@2x.png",
+        "offers": {
+          "@type": "Offer",
+          "price": "175",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Spring til hovedindhold for tilgængelighed -->
@@ -166,11 +221,11 @@
             Et lille, hyggeligt værksted, hvor du kan fordybe dig i at male skåle og kopper, som jeg har drejet.
           </p>
           <div class="hero-actions">
-            <a href="#keramik" class="button button-primary">
-              Udforsk Keramikken
+            <a href="#kontakt" class="button button-primary">
+              Skriv og book en tid
             </a>
-            <a href="#kontakt" class="button button-secondary">
-              Book En Kreativ Pause
+            <a href="#keramik" class="button button-secondary">
+              Se keramikken
             </a>
           </div>
         </div>
@@ -184,10 +239,10 @@
           <div class="about-text">
             <h2 id="about-title" class="about-title">Om værkstedet</h2>
             <p>
-              <strong>Krealoftet</strong> er et lille, hyggeligt keramikværksted i Barrit, i hjertet mellem Vejle, Horsens og Juelsminde.
+              <strong>Krealoftet</strong> er et lille keramikværksted i Barrit, hvor du kan male din egen kop, skål eller tallerken. Alt keramik er hånddrejet, og prisen inkluderer maling, glasering og brænding.
             </p>
             <p>
-              Her kan du male din egen kop, skål eller andre finurligheder.
+              Værkstedet ligger i hjertet mellem Vejle, Horsens og Juelsminde – et hyggeligt sted med plads til fordybelse.
             </p>
             <p>
               Mit lille værksted findes på loftet af vores hus hvor væggene skråner og loftet sænker tempoet. Her er plads til fordybelse, gode snakke og rum for at være kreativ.
@@ -306,86 +361,95 @@
         <div class="gallery-carousel embla">
           <div class="embla__viewport">
             <div class="embla__container">
-              <article class="embla__slide product-card">
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img 
                     src="/assets/images/image-2@2x.png" 
-                    alt="Hygge-skålen - en alsidig skål til morgenmad og snacks"
+                    alt="Hygge-skålen – hånddrejet keramikskål du selv maler i værkstedet"
                     width="300" 
                     height="300"
                     loading="lazy"
+                    itemprop="image"
                   >
                   <span class="product-card-time">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    2 timer
+                    <time datetime="PT2H">Ca. 2 timer</time>
                   </span>
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title">Hygge-skålen</h3>
-                    <p class="product-card-description">Til morgenmad, snacks eller små hverdagsøjeblikke. En alsidig skål, som er nem at gå til – og sjov at gøre personlig.</p>
+                    <h3 class="product-card-title" itemprop="name">Hygge-skålen</h3>
+                    <p class="product-card-description" itemprop="description">En hånddrejet skål, du selv maler i værkstedet. Perfekt til morgenmad, snacks eller små hverdagsøjeblikke – nem at gå til og sjov at gøre personlig.</p>
                   </div>
-                  <p class="product-card-price">
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value">150 DKK</span>
+                    <span class="price-value" itemprop="price" content="150">150 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
               </article>
               
-              <article class="embla__slide product-card">
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img 
                     src="/assets/images/image-1@2x.png" 
-                    alt="Delestunden – stor skål med plads til leg med farver"
+                    alt="Delestunden – stor hånddrejet skål du selv maler i værkstedet"
                     width="300" 
                     height="300"
                     loading="lazy"
+                    itemprop="image"
                   >
                   <span class="product-card-time">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    2 timer
+                    <time datetime="PT2H">Ca. 2 timer</time>
                   </span>
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title">Delestunden – stor skål</h3>
-                    <p class="product-card-description">Når der skal være plads til lidt mere. En større skål med masser af plads til leg med farver og udtryk.</p>
+                    <h3 class="product-card-title" itemprop="name">Delestunden – stor skål</h3>
+                    <p class="product-card-description" itemprop="description">Når der skal være plads til lidt mere. En større hånddrejet skål med masser af plads til leg med farver og udtryk.</p>
                   </div>
-                  <p class="product-card-price">
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value">200 DKK</span>
+                    <span class="price-value" itemprop="price" content="200">200 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
               </article>
               
-              <article class="embla__slide product-card">
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img 
                     src="/assets/images/image-3@2x.png" 
-                    alt="Ro & Te-koppen – en rummelig kop til te eller kaffe"
+                    alt="Ro & Te-koppen – hånddrejet kop du selv maler i værkstedet"
                     width="300" 
                     height="300"
                     loading="lazy"
+                    itemprop="image"
                   >
                   <span class="product-card-time">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    2 timer
+                    <time datetime="PT2H">Ca. 2 timer</time>
                   </span>
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title">Ro & Te-koppen</h3>
-                    <p class="product-card-description">Lidt større, lidt mere ro. En rummelig kop til te, kaffe eller bare en stille stund.</p>
+                    <h3 class="product-card-title" itemprop="name">Ro & Te-koppen</h3>
+                    <p class="product-card-description" itemprop="description">Lidt større, lidt mere ro. En rummelig, hånddrejet kop til te, kaffe eller bare en stille stund.</p>
                   </div>
-                  <p class="product-card-price">
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value">175 DKK</span>
+                    <span class="price-value" itemprop="price" content="175">175 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
               </article>
@@ -624,6 +688,7 @@
         </address>
         
         <nav class="footer-legal" aria-label="Legal">
+          <a href="/faq">FAQ</a>
           <a href="/handelsbetingelser">Handelsbetingelser</a>
           <a href="/privatlivspolitik">Privatlivspolitik</a>
         </nav>

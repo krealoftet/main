@@ -1556,99 +1556,202 @@ section {
   }
 }
 
-/* Legal Pages (Handelsbetingelser, Privatlivspolitik) */
-.legal-page {
+/* ==========================================================================
+   Content Page Structure
+   Generic structure for text-heavy pages (FAQ, terms, privacy, guides, etc.)
+   ========================================================================== */
+/* Page wrapper */
+.content-page {
   padding: var(--space-24) 0;
   min-height: calc(100vh - 200px);
 }
-.legal-page .container {
+.content-page .container {
   padding: var(--space-12) var(--space-6) 0;
 }
 
-.legal-header {
+/* Page header with title */
+.page-header {
   text-align: center;
   margin-bottom: var(--space-12);
 }
 
-.legal-title {
+.page-title {
   font-size: var(--font-size-4xl);
   color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
 
-.legal-content {
+/* Intro text below title */
+.page-intro {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Main content body */
+.page-body {
   max-width: 700px;
   margin: 0 auto;
 }
 
-.legal-section {
+/* Back navigation */
+.page-nav {
+  text-align: center;
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border-default);
+}
+
+/* ==========================================================================
+   Content Sections
+   Reusable content blocks within pages
+   ========================================================================== */
+.content-section {
   margin-bottom: var(--space-10);
 }
-.legal-section h2 {
+.content-section h2 {
   font-size: var(--font-size-xl);
   color: var(--text-primary);
   margin-bottom: var(--space-4);
   padding-bottom: var(--space-2);
   border-bottom: 2px solid var(--action-primary);
 }
-.legal-section p {
+.content-section p {
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--text-secondary);
   margin-bottom: var(--space-4);
 }
-.legal-section p:last-child {
+.content-section p:last-child {
   margin-bottom: 0;
 }
-.legal-section ul {
+.content-section ul {
   margin: 0 0 var(--space-4);
   padding-left: var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
 }
-.legal-section ul li {
+.content-section ul li {
   margin-bottom: var(--space-2);
 }
-.legal-section ul li:last-child {
+.content-section ul li:last-child {
   margin-bottom: 0;
 }
-.legal-section a {
+.content-section a {
   color: var(--action-primary);
   text-decoration: none;
 }
-.legal-section a:hover {
+.content-section a:hover {
   text-decoration: underline;
 }
 
-.legal-contact {
+/* Highlighted content card */
+.content-card {
   background: var(--bg-section);
   padding: var(--space-6);
   border-radius: var(--space-3);
 }
-.legal-contact address {
+.content-card address {
   font-style: normal;
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--text-secondary);
 }
-.legal-contact address strong {
+.content-card address strong {
   color: var(--text-primary);
   font-weight: 600;
 }
-.legal-contact address a {
+.content-card address a {
   color: var(--action-primary);
   text-decoration: none;
 }
-.legal-contact address a:hover {
+.content-card address a:hover {
   text-decoration: underline;
 }
 
-.legal-back {
-  text-align: center;
-  margin-top: var(--space-12);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--border-default);
+/* ==========================================================================
+   Accordion Component
+   Expandable content sections (FAQ, collapsibles, etc.)
+   ========================================================================== */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.accordion-item {
+  background: var(--bg-section);
+  border-radius: var(--space-3);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+.accordion-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.accordion-item[open] {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.accordion-item[open] .accordion-icon {
+  transform: rotate(180deg);
+}
+.accordion-item[open] .accordion-trigger {
+  color: var(--action-primary);
+}
+
+.accordion-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  line-height: var(--line-height-snug);
+  transition: color 0.2s ease;
+}
+.accordion-trigger::-webkit-details-marker {
+  display: none;
+}
+.accordion-trigger::marker {
+  display: none;
+  content: "";
+}
+.accordion-trigger span {
+  flex: 1;
+}
+.accordion-trigger:hover {
+  color: var(--action-primary);
+}
+.accordion-trigger:focus-visible {
+  outline: 2px solid var(--action-primary);
+  outline-offset: -2px;
+  border-radius: var(--space-3);
+}
+
+.accordion-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.accordion-content {
+  padding: 0 var(--space-5) var(--space-5);
+}
+.accordion-content p {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  max-width: none;
 }
 
 /* =====================================================
