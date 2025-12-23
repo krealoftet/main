@@ -35,6 +35,34 @@
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/styles/main.css">
+  
+  <!-- Tracking Scripts (Cookiebot managed - only runs after consent) -->
+  <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-VZ090H12BQ"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZ090H12BQ', { 'anonymize_ip': true });
+  </script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "upki9u9ls4");
+  </script>
+  <script type="text/plain" data-cookieconsent="marketing">
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '26026107106997384');
+    fbq('track', 'PageView');
+  </script>
 </head>
 <body>
   <!-- Skip to main content for accessibility -->
@@ -151,11 +179,11 @@
             </p>
             <p>
               <strong>Statistikcookies (kun ved samtykke)</strong><br>
-              Anvendes til at analysere, hvordan hjemmesiden bruges, fx via Google Tag Manager og Google Analytics.
+              Anvendes til at analysere, hvordan hjemmesiden bruges, fx via Google Analytics (GA4) og Microsoft Clarity.
             </p>
             <p>
               <strong>Marketingcookies (kun ved samtykke)</strong><br>
-              Anvendes til markedsføring og retargeting, fx via Facebook Pixel.
+              Anvendes til markedsføring og retargeting, fx via Meta Pixel (Faceboog og Instagram).
             </p>
             <p>
               Ved dit første besøg på hjemmesiden bliver du bedt om at tage stilling til brugen af cookies, og du kan til enhver tid ændre eller trække dit samtykke tilbage.
