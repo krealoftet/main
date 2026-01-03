@@ -348,16 +348,20 @@ function initGalleryCarousel() {
     const isDesktop = window.innerWidth >= desktopBreakpoint;
     const allCardsFit = isDesktop && slideCount <= 3;
     
-    // Use center alignment when not all cards fit
-    // But keep loop disabled to prevent glitching
+    // Use center alignment when there are more slides than visible
+    // This centers the focused card when there's at least 1 card before and after
     const useCenter = slideCount > 3 || !allCardsFit;
     
     return {
       loop: false,
       align: useCenter ? 'center' : 'start',
       containScroll: 'trimSnaps',
+      // Enable snap to slides (dragFree: false = snap to slides)
       dragFree: false,
-      skipSnaps: false
+      skipSnaps: false,
+      // Smooth snap animation
+      duration: 30,
+      startIndex: 0
     };
   };
   

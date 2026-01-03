@@ -53,7 +53,7 @@
   <meta name="msapplication-TileColor" content="#ea6856">
   
   <!-- Performance Optimization: Preload LCP hero image -->
-  <link rel="preload" href="/assets/images/hero-image-ceramic-art.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="/assets/images/hero-image-ceramic-art-mobile.webp 768w, /assets/images/hero-image-ceramic-art.webp 1920w" imagesizes="100vw">
+  <link rel="preload" href="/assets/images/krealoftet_hero_1920.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="/assets/images/krealoftet_hero_800.webp 800w, /assets/images/krealoftet_hero_1280.webp 1280w, /assets/images/krealoftet_hero_1920.webp 1920w, /assets/images/krealoftet_hero_2560.webp 2560w" imagesizes="100vw">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -185,12 +185,12 @@
       {
         "@type": "Product",
         "position": 1,
-        "name": "Hygge-skålen",
-        "description": "En hånddrejet skål, du selv maler i værkstedet. Perfekt til morgenmad, snacks eller små hverdagsøjeblikke.",
-        "image": "https://krealoftet.dk/assets/images/image-2@2x.png",
+        "name": "Lille skål",
+        "description": "En fin lille skål til snacks, nødder eller morgenyoghurt. Nem at male og hyggelig at have stående.",
+        "image": "https://krealoftet.dk/assets/images/skaal_lille.webp",
         "offers": {
           "@type": "Offer",
-          "price": "150",
+          "price": "125",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock",
           "seller": {
@@ -202,12 +202,12 @@
       {
         "@type": "Product",
         "position": 2,
-        "name": "Delestunden – stor skål",
-        "description": "En større hånddrejet skål med masser af plads til leg med farver og udtryk.",
-        "image": "https://krealoftet.dk/assets/images/image-1@2x.png",
+        "name": "Klassisk kop",
+        "description": "En god, solid hverdagskop med behagelig hank. Perfekt til morgenkaffen eller teen om eftermiddagen.",
+        "image": "https://krealoftet.dk/assets/images/kop_hank_standard.webp",
         "offers": {
           "@type": "Offer",
-          "price": "200",
+          "price": "150",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock"
         }
@@ -215,9 +215,48 @@
       {
         "@type": "Product",
         "position": 3,
-        "name": "Ro & Te-koppen",
-        "description": "En rummelig, hånddrejet kop til te, kaffe eller bare en stille stund.",
-        "image": "https://krealoftet.dk/assets/images/image-3@2x.png",
+        "name": "Stor skål",
+        "description": "Masser af plads til salat, pasta eller frugt. En skål der gør sig godt midt på bordet.",
+        "image": "https://krealoftet.dk/assets/images/skaal_stor_lav.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "175",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 4,
+        "name": "Bubble-koppen",
+        "description": "En rund og blød kop uden hank. Ligger godt i hænderne og inviterer til langsomme øjeblikke.",
+        "image": "https://krealoftet.dk/assets/images/kop_bubble.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "150",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 5,
+        "name": "Flettet hank",
+        "description": "En kop med en flettet hank der giver karakter. Skiller sig ud og er sjov at male.",
+        "image": "https://krealoftet.dk/assets/images/kop_hank_flettet.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "175",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 6,
+        "name": "Sløjfe-koppen",
+        "description": "En elegant kop med en fin sløjfe-formet hank. Lidt ekstra detalje til den der elsker det.",
+        "image": "https://krealoftet.dk/assets/images/kop_hank_sloejfe.webp",
         "offers": {
           "@type": "Offer",
           "price": "175",
@@ -264,19 +303,29 @@
   <main id="main-content" role="main">
     <!-- Hero Section -->
     <section class="hero" aria-labelledby="hero-title">
-      <!-- LCP Hero Image: Prioritized for Core Web Vitals -->
+      <!-- LCP Hero Image: Responsive breakpoints for optimal loading -->
       <picture class="hero-image">
         <source 
-          media="(max-width: 768px)" 
-          srcset="/assets/images/hero-image-ceramic-art-mobile.webp" 
+          media="(max-width: 800px)" 
+          srcset="/assets/images/krealoftet_hero_800.webp" 
           type="image/webp"
         >
         <source 
-          srcset="/assets/images/hero-image-ceramic-art.webp" 
+          media="(max-width: 1280px)" 
+          srcset="/assets/images/krealoftet_hero_1280.webp" 
+          type="image/webp"
+        >
+        <source 
+          media="(max-width: 1920px)" 
+          srcset="/assets/images/krealoftet_hero_1920.webp" 
+          type="image/webp"
+        >
+        <source 
+          srcset="/assets/images/krealoftet_hero_2560.webp" 
           type="image/webp"
         >
         <img 
-          src="/assets/images/hero-image-ceramic-art.jpg" 
+          src="/assets/images/krealoftet_hero_1920.webp" 
           alt="Hånddrejet keramik i et hyggeligt værksted – mal din egen kop eller skål hos Krealoftet"
           width="1920"
           height="1080"
@@ -435,30 +484,48 @@
         <div class="gallery-carousel embla">
           <div class="embla__viewport">
             <div class="embla__container">
+              <!-- 1. Lille skål -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
-                  <picture>
-                      <source srcset="/assets/images/image-2@2x.webp" type="image/webp">
-                      <img 
-                        src="/assets/images/image-2@2x.png" 
-                        alt="Hygge-skålen – hånddrejet keramikskål du selv maler i værkstedet"
-                        width="300" 
-                        height="300"
-                        loading="lazy"
-                        itemprop="image"
-                      >
-                    </picture>
-                  <span class="product-card-time">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    <time datetime="PT2H">Ca. 2 timer</time>
-                  </span>
+                  <img 
+                    src="/assets/images/skaal_lille.webp" 
+                    alt="Lille skål – hånddrejet keramikskål du selv maler i værkstedet"
+                    width="300" 
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Hygge-skålen</h3>
-                    <p class="product-card-description" itemprop="description">En hånddrejet skål, du selv maler i værkstedet. Perfekt til morgenmad, snacks eller små hverdagsøjeblikke – nem at gå til og sjov at gøre personlig.</p>
+                    <h3 class="product-card-title" itemprop="name">Lille skål</h3>
+                    <p class="product-card-description" itemprop="description">En fin lille skål til snacks, nødder eller morgenyoghurt. Nem at male og hyggelig at have stående.</p>
+                  </div>
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
+                    <span class="price-label">Vejledende pris:</span>
+                    <span class="price-value" itemprop="price" content="125">125 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
+                  </p>
+                </div>
+              </article>
+              
+              <!-- 2. Klassisk kop med hank -->
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
+                <div class="product-card-image">
+                  <img 
+                    src="/assets/images/kop_hank_standard.webp" 
+                    alt="Klassisk kop – hånddrejet keramikkop du selv maler i værkstedet"
+                    width="300" 
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
+                </div>
+                <div class="product-card-info">
+                  <div class="product-card-content">
+                    <h3 class="product-card-title" itemprop="name">Klassisk kop</h3>
+                    <p class="product-card-description" itemprop="description">En god, solid hverdagskop med behagelig hank. Perfekt til morgenkaffen eller teen om eftermiddagen.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
@@ -469,30 +536,22 @@
                 </div>
               </article>
               
+              <!-- 3. Stor lav skål -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
-                  <picture>
-                      <source srcset="/assets/images/image-1@2x.webp" type="image/webp">
-                      <img 
-                        src="/assets/images/image-1@2x.png" 
-                        alt="Delestunden – stor hånddrejet skål du selv maler i værkstedet"
-                        width="300" 
-                        height="300"
-                        loading="lazy"
-                        itemprop="image"
-                      >
-                    </picture>
-                  <span class="product-card-time">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    <time datetime="PT2H">Ca. 2 timer</time>
-                  </span>
+                  <img 
+                    src="/assets/images/skaal_stor_lav.webp" 
+                    alt="Stor skål – hånddrejet keramikskål du selv maler i værkstedet"
+                    width="300" 
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Delestunden – stor skål</h3>
-                    <p class="product-card-description" itemprop="description">Når der skal være plads til lidt mere. En større hånddrejet skål med masser af plads til leg med farver og udtryk.</p>
+                    <h3 class="product-card-title" itemprop="name">Stor lav skål</h3>
+                    <p class="product-card-description" itemprop="description">Masser af plads til frugt eller snacks. En skål der gør sig godt midt på bordet.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
@@ -503,30 +562,74 @@
                 </div>
               </article>
               
+              <!-- 4. Bubble-kop -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
-                  <picture>
-                      <source srcset="/assets/images/image-3@2x.webp" type="image/webp">
-                      <img 
-                        src="/assets/images/image-3@2x.png" 
-                        alt="Ro & Te-koppen – hånddrejet kop du selv maler i værkstedet"
-                        width="300" 
-                        height="300"
-                        loading="lazy"
-                        itemprop="image"
-                      >
-                    </picture>
-                  <span class="product-card-time">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    <time datetime="PT2H">Ca. 2 timer</time>
-                  </span>
+                  <img 
+                    src="/assets/images/kop_bubble.webp" 
+                    alt="Bubble-koppen – hånddrejet keramikkop du selv maler i værkstedet"
+                    width="300" 
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Ro & Te-koppen</h3>
-                    <p class="product-card-description" itemprop="description">Lidt større, lidt mere ro. En rummelig, hånddrejet kop til te, kaffe eller bare en stille stund.</p>
+                    <h3 class="product-card-title" itemprop="name">Bubble-koppen</h3>
+                    <p class="product-card-description" itemprop="description">En rund og blød kop uden hank. Ligger godt i hænderne og inviterer til langsomme øjeblikke.</p>
+                  </div>
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
+                    <span class="price-label">Vejledende pris:</span>
+                    <span class="price-value" itemprop="price" content="150">150 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
+                  </p>
+                </div>
+              </article>
+              
+              <!-- 5. Kop med flettet hank -->
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
+                <div class="product-card-image">
+                  <img 
+                    src="/assets/images/kop_hank_flettet.webp" 
+                    alt="Kop med flettet hank – hånddrejet keramikkop du selv maler i værkstedet"
+                    width="300" 
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
+                </div>
+                <div class="product-card-info">
+                  <div class="product-card-content">
+                    <h3 class="product-card-title" itemprop="name">Flettet hank</h3>
+                    <p class="product-card-description" itemprop="description">En kop med en flettet hank der giver karakter. Skiller sig ud og er sjov at male.</p>
+                  </div>
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
+                    <span class="price-label">Vejledende pris:</span>
+                    <span class="price-value" itemprop="price" content="175">175 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
+                  </p>
+                </div>
+              </article>
+              
+              <!-- 6. Kop med sløjfe-hank -->
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
+                <div class="product-card-image">
+                  <img 
+                    src="/assets/images/kop_hank_sloejfe.webp" 
+                    alt="Kop med sløjfe-hank – hånddrejet keramikkop du selv maler i værkstedet"
+                    width="300" 
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
+                </div>
+                <div class="product-card-info">
+                  <div class="product-card-content">
+                    <h3 class="product-card-title" itemprop="name">Sløjfe-koppen</h3>
+                    <p class="product-card-description" itemprop="description">En elegant kop med en fin sløjfe-formet hank. Lidt ekstra detalje til den der elsker det.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
@@ -651,9 +754,9 @@
         <div class="about-me-layout">
           <div class="about-me-image">
             <picture>
-                <source srcset="/assets/images/ceramic-workshop-creation.webp" type="image/webp">
+                <source srcset="/assets/images/krealoftet_about_sommer.webp" type="image/webp">
                 <img 
-                  src="/assets/images/ceramic-workshop-creation.jpg" 
+                  src="/assets/images/krealoftet_about_sommer.webp" 
                   alt="Johanne Sommer, indehaver af Krealoftet keramikværksted i Barrit"
                   width="500"
                   height="600"

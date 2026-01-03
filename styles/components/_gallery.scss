@@ -28,18 +28,23 @@
 }
 
 .embla__viewport {
-  overflow: hidden;
+  overflow: visible; // Allow padding to be visible
+  // Smooth scroll snap behavior (works alongside Embla's JS snap)
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .embla__container {
   display: flex;
   justify-content: start;
-  width: min(1200px, 100%);
-  margin: 0 auto;
-  padding: var(--space-2) 0 var(--space-6); // 8px 0 24px
-  padding-left: var(--space-4); // 16px
+  // Remove horizontal padding - it causes transform offset issues
+  // Use margin on slides instead
+  padding: var(--space-2) 0 var(--space-6); // 8px 0 24px - vertical only
   gap: var(--space-4); // 16px
   cursor: grab;
+  // GPU acceleration for smooth drag
+  will-change: transform;
+  backface-visibility: hidden;
   
   &:active {
     cursor: grabbing;
@@ -49,18 +54,17 @@
 .embla__slide {
   flex: 0 0 340px;
   min-width: 0;
+  // CSS scroll snap point (works alongside Embla's JS snap)
+  scroll-snap-align: center;
   
-  // Add padding to last slide to balance the left padding
-  &:last-child {
-    margin-right: var(--space-4); // 16px
+  // Use margin instead of container padding to avoid transform offset
+  // First slide gets left margin, last slide gets right margin
+  &:first-child {
+    margin-left: var(--space-4); // 16px
   }
   
-  @media (min-width: 1100px) {
-    flex: 0 0 33.333%;
-    
-    &:last-child {
-      margin-right: 0;
-    }
+  &:last-child {
+    margin-right: var(--space-4); // 16px
   }
 }
 
@@ -80,7 +84,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: width 0.2s ease, background 0.2s ease, border-radius 0.2s ease;
   
   &:hover {
     background: var(--text-secondary);
@@ -90,7 +94,6 @@
     width: var(--space-12); // 48px
     border-radius: var(--space-3); // 12px
     background: var(--action-primary);
-    transform: scale(1);
   }
 }
 
@@ -102,7 +105,10 @@
   border-radius: var(--space-4); // 16px
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  // Only transition specific properties to avoid drag stutter
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  // GPU acceleration for smoother animations
+  will-change: transform;
 
   // Hover state only on devices that support hover (not touch)
   @media (hover: hover) and (pointer: fine) {
@@ -143,6 +149,7 @@
     height: var(--icon-sm); // 16px
   }
 }
+
 
 .product-card-info {
   display: flex;
