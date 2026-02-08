@@ -1299,7 +1299,7 @@ section {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  margin-bottom: var(--space-8);
+  margin-bottom: calc(-3 * var(--space-2));
 }
 
 .inspiration-brand {

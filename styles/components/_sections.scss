@@ -307,7 +307,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4); // 16px
-  margin-bottom: var(--space-8); // 32px
+  margin-bottom: calc(-3 * var(--space-2));
 }
 
 .inspiration-brand {
