@@ -1299,6 +1299,7 @@ section {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
+  margin-top: var(--space-8);
   margin-bottom: calc(-3 * var(--space-2));
 }
 
@@ -1306,6 +1307,14 @@ section {
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  text-decoration: none;
+}
+.inspiration-brand:hover, .inspiration-brand:focus {
+  text-decoration: none;
+}
+.inspiration-brand:hover .inspiration-title, .inspiration-brand:focus .inspiration-title {
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .inspiration-logo {
@@ -1316,9 +1325,9 @@ section {
 }
 
 .inspiration-title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin: 0;
 }
 

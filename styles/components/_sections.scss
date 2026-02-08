@@ -307,6 +307,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4); // 16px
+  margin-top: var(--space-8); // 32px
   margin-bottom: calc(-3 * var(--space-2));
 }
 
@@ -314,6 +315,17 @@
   display: flex;
   align-items: center;
   gap: var(--space-3); // 12px
+  text-decoration: none;
+  
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    
+    .inspiration-title {
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+  }
 }
 
 .inspiration-logo {
@@ -324,9 +336,9 @@
 }
 
 .inspiration-title {
-  font-size: var(--font-size-xl); // 20px
+  font-size: var(--font-size-sm); // 14px
   font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin: 0;
 }
 
