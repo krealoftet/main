@@ -302,60 +302,36 @@
   padding: var(--space-20) 0; // 80px
 }
 
-.instagram-widget {
-  margin-top: var(--space-8); // 32px
+.inspiration-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4); // 16px
+  margin-bottom: var(--space-8); // 32px
 }
 
-.instagram-placeholder {
+.inspiration-brand {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-16) var(--space-8); // 64px 32px
-  background: linear-gradient(
-    135deg,
-    #f9ce34 0%,
-    #ee2a7b 50%,
-    #6228d7 100%
-  );
-  border-radius: var(--space-6); // 24px
-  text-align: center;
-  color: var(--white);
-  
-  .instagram-icon {
-    width: var(--space-16); // 64px
-    height: var(--space-16); // 64px
-    margin-bottom: var(--space-6); // 24px
-    
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  
-  h3 {
-    font-size: var(--font-size-2xl); // 24px
-    margin-bottom: var(--space-2); // 8px
-    color: var(--white);
-  }
-  
-  p {
-    font-size: var(--font-size-lg); // 18px
-    opacity: 0.9;
-    margin-bottom: var(--space-6); // 24px
-    max-width: none;
-  }
-  
-  .button {
-    background: var(--white);
-    color: #6228d7;
-    border: none;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.9);
-      transform: translateY(-2px);
-    }
-  }
+  gap: var(--space-3); // 12px
+}
+
+.inspiration-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.inspiration-title {
+  font-size: var(--font-size-xl); // 20px
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.instagram-widget {
+  margin-top: 0;
 }
 
 /* About Me Section */

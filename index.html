@@ -74,7 +74,7 @@
   </style>
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css?v=1.0.0">
   
   <!-- Tracking Scripts (Cookiebot managed - only runs after consent) -->
   
@@ -114,7 +114,7 @@
   </noscript>
   
   <!-- Security -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://unpkg.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net; connect-src 'self' https://api.web3forms.com https://consentcdn.cookiebot.com https://*.google-analytics.com https://analytics.google.com https://*.clarity.ms https://www.facebook.com https://*.facebook.com; frame-src 'self' https://consentcdn.cookiebot.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embedsocial.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://unpkg.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://embedsocial.com; connect-src 'self' https://api.web3forms.com https://consentcdn.cookiebot.com https://*.google-analytics.com https://analytics.google.com https://*.clarity.ms https://www.facebook.com https://*.facebook.com https://embedsocial.com https://*.embedsocial.com; frame-src 'self' https://consentcdn.cookiebot.com https://embedsocial.com;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <!-- X-Frame-Options removed: only works via HTTP header, not meta tag -->
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -160,7 +160,7 @@
     },
     "sameAs": [
       "https://instagram.com/krealoftet_by_sommer",
-      "https://facebook.com/krealoftet"
+      "https://www.facebook.com/profile.php?id=61585391819160"
     ],
     "areaServed": {
       "@type": "GeoCircle",
@@ -233,7 +233,7 @@
         "image": "https://krealoftet.dk/assets/images/kop_bubble.webp",
         "offers": {
           "@type": "Offer",
-          "price": "150",
+          "price": "175",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock"
         }
@@ -580,7 +580,7 @@
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value" itemprop="price" content="150">150 DKK</span>
+                    <span class="price-value" itemprop="price" content="175">175 DKK</span>
                     <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
@@ -719,26 +719,38 @@
     <!-- Inspiration Section -->
     <section id="inspiration" class="inspiration" aria-labelledby="inspiration-title">
       <div class="container">
-        <header class="section-header">
-          <h2 id="inspiration-title" class="section-title">Mangler du inspiration?</h2>
-          <p class="section-subtitle">
-            På Instagram deler jeg små glimt fra værkstedet, farverige projekter og færdige værker fra andre, der har været forbi. Måske finder du en idé – eller bare lysten til selv at komme i gang.
-          </p>
-        </header>
-        
+        <div class="inspiration-header">
+          <div class="inspiration-brand">
+            <img 
+              src="/assets/images/krealoftet_logo.png" 
+              alt="Krealoftet by Sommer logo" 
+              class="inspiration-logo"
+              width="48" 
+              height="48"
+              loading="lazy"
+            >
+            <h2 id="inspiration-title" class="inspiration-title">Krealoftet by Sommer</h2>
+          </div>
+          <a href="https://instagram.com/krealoftet_by_sommer" class="button button-primary" target="_blank" rel="noopener noreferrer">
+            Følg med!
+          </a>
+        </div>
+
+        <!-- EmbedSocial Instagram Feed -->
         <div class="instagram-widget">
-          <div class="instagram-placeholder">
-            <div class="instagram-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-              </svg>
-            </div>
-            <h3>@krealoftet_by_sommer</h3>
-            <p>Følg med på Instagram og se hvad vi går og laver på værkstedet.</p>
-            <a href="https://instagram.com/krealoftet_by_sommer" class="button button-primary" target="_blank" rel="noopener noreferrer">
-              Følg os på Instagram
+          <div class="embedsocial-hashtag" data-ref="3c074dd3d1244d86ef25f165dc073b8d38344ebe">
+            <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding" href="https://embedsocial.com/social-media-aggregator/" target="_blank" title="Instagram widget">
+              <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial">
+              <div class="es-widget-branding-text">Instagram widget</div>
             </a>
           </div>
+          <script>
+            (function(d, s, id) {
+              var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id;
+              js.src = "https://embedsocial.com/cdn/ht.js";
+              d.getElementsByTagName("head")[0].appendChild(js);
+            }(document, "script", "EmbedSocialHashtagScript"));
+          </script>
         </div>
       </div>
     </section>
@@ -883,7 +895,7 @@
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
             </svg>
           </a>
-          <a href="https://facebook.com/krealoftet" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/profile.php?id=61585391819160" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
@@ -897,7 +909,7 @@
 
   <!-- Scripts: Deferred to not block rendering -->
   <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js" defer></script>
-  <script src="/js/main.js" defer></script>
+  <script src="/js/main.js?v=1.0.0" defer></script>
   
   
   <!-- Service Worker Registration -->
