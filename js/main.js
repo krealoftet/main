@@ -86,6 +86,44 @@ function initHeaderScroll() {
   window.addEventListener('scroll', updateHeader, { passive: true });
 }
 
+// ─── Rate Limiting ────────────────────────────────────────────────────────────
+const RATE_LIMIT_KEY   = 'krealoftet_form_submissions';
+const RATE_LIMIT_MAX   = 3;   // max submissions allowed…
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // …within this rolling window (1 hour)
+
+/**
+ * Returns { allowed: bool, minutesLeft: number }
+ * Records the current attempt if allowed.
+ */
+function checkRateLimit() {
+  const now = Date.now();
+  let timestamps = [];
+
+  try {
+    timestamps = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || '[]');
+  } catch (_) {
+    timestamps = [];
+  }
+
+  // Keep only timestamps within the rolling window
+  timestamps = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW);
+
+  if (timestamps.length >= RATE_LIMIT_MAX) {
+    // Oldest submission determines when window reopens
+    const oldestTs = Math.min(...timestamps);
+    const minutesLeft = Math.ceil((RATE_LIMIT_WINDOW - (now - oldestTs)) / 60000);
+    return { allowed: false, minutesLeft };
+  }
+
+  // Record this submission
+  timestamps.push(now);
+  try {
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(timestamps));
+  } catch (_) { /* storage full – fail open */ }
+
+  return { allowed: true, minutesLeft: 0 };
+}
+
 /**
  * Initialize contact form for Web3Forms
  */
@@ -99,6 +137,15 @@ function initContactForm() {
   
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // ── Rate limit check ──────────────────────────────────────────────────────
+    const { allowed, minutesLeft } = checkRateLimit();
+    if (!allowed) {
+      showErrorMessage(
+        `Du har sendt for mange beskeder på kort tid. Prøv igen om ${minutesLeft} minut${minutesLeft === 1 ? '' : 'ter'}.`
+      );
+      return;
+    }
     
     // Update replyto with email value
     if (emailInput && replyToInput) {
