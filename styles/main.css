@@ -801,8 +801,6 @@ section {
   padding: var(--space-2) 0 var(--space-6);
   gap: var(--space-4);
   cursor: grab;
-  will-change: transform;
-  backface-visibility: hidden;
 }
 .embla__container:active {
   cursor: grabbing;
