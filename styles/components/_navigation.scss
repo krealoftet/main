@@ -2,6 +2,8 @@
    File: styles/components/_navigation.scss
    ----------------------------------------------------- */
 
+// ─── Header Bar ───────────────────────────────────────────────────────────────
+
 .header {
   position: fixed;
   top: 0;
@@ -12,143 +14,266 @@
   border-bottom: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
-  // Scrolled state - solid background
   &.header--scrolled {
     background-color: var(--bg-surface);
     border-bottom-color: var(--border-muted);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
-    .nav-toggle .hamburger,
-    .nav-toggle .hamburger::before,
-    .nav-toggle .hamburger::after {
-      background: var(--text-primary);
+    .logo img {
+      height: 56px;
     }
 
-    .logo img {
-      filter: none;
-      height: 56px; // Scale down when scrolled
+    .nav-toggle {
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+
+      &:hover {
+        background-color: var(--bg-section);
+        color: var(--action-primary);
+      }
     }
   }
 
-  // Transparent state styling (on hero)
   &:not(.header--scrolled) {
-    .nav-toggle .hamburger,
-    .nav-toggle .hamburger::before,
-    .nav-toggle .hamburger::after {
-      background: white;
-    }
+    .nav-toggle {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.35);
 
-    .nav-toggle[aria-expanded="true"] .hamburger {
-      background: transparent;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+    }
+  }
+
+  // Open state wins over both scroll states (same specificity, later in source)
+  .nav-toggle[aria-expanded="true"] {
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+
+    &:hover {
+      background-color: var(--bg-section);
+      color: var(--action-primary);
     }
   }
 }
 
-.navigation {
-  position: relative;
+// ─── Navigation Bar ───────────────────────────────────────────────────────────
 
+.navigation {
   .nav-container {
     display: flex;
     align-items: center;
-    justify-content: center; // Center logo
+    justify-content: center;
     position: relative;
-    padding: var(--space-4) var(--space-6); // 16px 24px
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: var(--space-4) var(--space-6);
   }
 
   .logo img {
     height: 96px;
     width: auto;
-    transition: height 0.3s ease; // Smooth scale transition
+    transition: height 0.3s ease;
   }
+
+  // ─── Nav Toggle ────────────────────────────────────────────────────────────
 
   .nav-toggle {
     position: absolute;
-    right: var(--space-6); // 24px - Match container padding
-    top: 50%;
-    transform: translateY(-50%);
+    right: var(--space-6);
+    top: var(--space-6);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     background: none;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.35); // overridden by header state rules
+    border-radius: var(--space-2);
     cursor: pointer;
-    padding: var(--space-3); // 12px - Increased for better touch target
-    border-radius: var(--space-2); // 8px
-    transition: background-color 0.2s ease;
-    // Mobile touch target optimization (min 48x48px)
-    min-width: 48px;
-    min-height: 48px;
+    color: white; // overridden by header state rules
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    z-index: 201; // Always above sidebar and overlay
 
-    &:hover {
-      background-color: var(--bg-muted, rgba(0, 0, 0, 0.05));
+    &__icon {
+      position: absolute;
+      transition: opacity 0.2s ease;
+
+      &--open  { opacity: 1; }
+      &--close { opacity: 0; }
     }
 
-    .hamburger {
-      width: var(--icon-lg); // 24px
-      height: 2px;
-      background: var(--text-primary);
-      position: relative;
-      transition: all 0.3s ease;
+    &[aria-expanded="true"] {
+      .nav-toggle__icon--open  { opacity: 0; }
+      .nav-toggle__icon--close { opacity: 1; }
+    }
+  }
+}
 
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        width: var(--icon-lg); // 24px
-        height: 2px;
-        background: var(--text-primary);
-        transition: all 0.3s ease;
-      }
+// ─── Sidebar Overlay ──────────────────────────────────────────────────────────
 
-      &::before {
-        top: calc(var(--space-2) * -1); // -8px
-      }
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 26, 25, 0.48); // carbon-500 at 48%
+  z-index: 199;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 
-      &::after {
-        top: var(--space-2); // 8px
-      }
+  &.nav-overlay--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// ─── Sidebar Panel ────────────────────────────────────────────────────────────
+
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%; // Mobile-first: full screen
+  background: var(--bg-surface);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (min-width: 480px) {
+    width: 380px;
+    box-shadow: -8px 0 48px rgba(0, 0, 0, 0.1);
+  }
+
+  &.nav-sidebar--open {
+    transform: translateX(0);
+  }
+
+  // ─── Header ──────────────────────────────────────────────────────────────
+
+  &__header {
+    padding: var(--space-8);
+    border-bottom: 1px solid var(--border-muted);
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  // ─── Menu List ───────────────────────────────────────────────────────────
+
+  &__menu {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-4) 0;
+    flex: 1;
+
+    li {
+      border-bottom: 1px solid var(--border-muted);
     }
 
-    &[aria-expanded="true"] .hamburger {
-      background: transparent;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-5) var(--space-8);
+      color: var(--text-primary);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-medium);
+      text-decoration: none;
+      transition: color 0.2s ease, background-color 0.2s ease;
 
-      &::before {
-        transform: rotate(45deg);
-        top: 0;
+      .nav-arrow {
+        color: var(--text-secondary);
+        flex-shrink: 0;
+        transition: transform 0.2s ease, color 0.2s ease;
       }
 
-      &::after {
-        transform: rotate(-45deg);
-        top: 0;
+      &:hover {
+        color: var(--action-primary);
+        background-color: var(--bg-section);
+
+        .nav-arrow {
+          transform: translateX(4px);
+          color: var(--action-primary);
+        }
       }
     }
   }
 
-  .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-surface);
+  // ─── Expandable item (split link + toggle) ───────────────────────────────
+
+  &__link-row {
     display: flex;
-    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: var(--space-5) var(--space-8);
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      color: var(--action-primary);
+      background-color: var(--bg-section);
+    }
+  }
+
+  &__sub-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-6);
+    background: none;
+    border: none;
+    border-left: 1px solid var(--border-muted);
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--action-primary);
+      background-color: var(--bg-section);
+    }
+
+    .nav-chevron {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.25s ease;
+    }
+
+    &[aria-expanded="true"] .nav-chevron {
+      transform: rotate(90deg);
+    }
+  }
+
+  // ─── Sub-menu ─────────────────────────────────────────────────────────────
+
+  &__sub {
     list-style: none;
     margin: 0;
     padding: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-top: 1px solid var(--border-muted);
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.3s ease;
+    background: var(--bg-section);
 
-    &.nav-menu--open {
-      max-height: 300px;
-      opacity: 1;
-      padding: var(--space-2) 0; // 8px vertical padding
+    &.nav-sidebar__sub--open {
+      max-height: 320px;
     }
 
     li {
@@ -161,18 +286,48 @@
 
     a {
       display: block;
-      color: var(--text-primary);
-      font-weight: 500;
-      font-size: var(--font-size-md); // 16px
-      padding: var(--space-4) var(--space-6); // 16px 24px
-      transition: background-color 0.2s ease, color 0.2s ease;
+      padding: var(--space-3) var(--space-8) var(--space-3) var(--space-10);
+      color: var(--text-secondary);
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-normal);
+      transition: color 0.2s ease, background-color 0.2s ease;
 
-      &:hover,
-      &[aria-current="page"] {
-        background-color: var(--bg-muted, rgba(0, 0, 0, 0.03));
+      &:hover {
         color: var(--action-primary);
+        background-color: var(--bg-muted);
+      }
+
+      &[aria-current="page"] {
+        color: var(--action-primary);
+        font-weight: var(--font-weight-medium);
       }
     }
   }
+
+  // ─── Footer ──────────────────────────────────────────────────────────────
+
+  &__footer {
+    padding: var(--space-8);
+    border-top: 1px solid var(--border-muted);
+    flex-shrink: 0;
+  }
+
+  &__brand {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1);
+  }
+
+  &__tagline {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin: 0;
+  }
 }
 
+// ─── Body scroll lock when sidebar is open ────────────────────────────────────
+
+body.nav-open {
+  overflow: hidden;
+}

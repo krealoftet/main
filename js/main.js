@@ -27,37 +27,69 @@ window.requestIdleCallback = window.requestIdleCallback || function(cb) {
 };
 
 /**
- * Initialize mobile navigation
+ * Initialize sidebar navigation
  */
 function initNavigation() {
   const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function() {
-      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-      
-      navToggle.setAttribute('aria-expanded', !isExpanded);
-      navMenu.classList.toggle('nav-menu--open');
-    });
+  const navSidebar = document.querySelector('.nav-sidebar');
+  const navOverlay = document.querySelector('.nav-overlay');
 
-    // Close menu when clicking on a link
-    const navLinks = navMenu.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('nav-menu--open');
-      });
-    });
+  if (!navToggle || !navSidebar || !navOverlay) return;
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      if (!event.target.closest('.navigation')) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('nav-menu--open');
-      }
-    });
+  function openSidebar() {
+    navToggle.setAttribute('aria-expanded', 'true');
+    navSidebar.classList.add('nav-sidebar--open');
+    navOverlay.classList.add('nav-overlay--visible');
+    navOverlay.removeAttribute('aria-hidden');
+    document.body.classList.add('nav-open');
   }
+
+  function closeSidebar() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navSidebar.classList.remove('nav-sidebar--open');
+    navOverlay.classList.remove('nav-overlay--visible');
+    navOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nav-open');
+    navToggle.focus();
+  }
+
+  navToggle.addEventListener('click', function() {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeSidebar() : openSidebar();
+  });
+
+  navOverlay.addEventListener('click', closeSidebar);
+
+  // Close on any nav link click
+  navSidebar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+      closeSidebar();
+    }
+  });
+
+  // Sub-menu toggles
+  navSidebar.querySelectorAll('.nav-sidebar__sub-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      const sub = document.getElementById(toggle.getAttribute('aria-controls'));
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      if (sub) sub.classList.toggle('nav-sidebar__sub--open', !isExpanded);
+    });
+  });
+
+  // Auto-expand sub-menu when current page is a sub-item
+  navSidebar.querySelectorAll('.nav-sidebar__sub a[aria-current="page"]').forEach(function(link) {
+    const sub = link.closest('.nav-sidebar__sub');
+    if (!sub) return;
+    const toggle = navSidebar.querySelector('[aria-controls="' + sub.id + '"]');
+    sub.classList.add('nav-sidebar__sub--open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  });
 }
 
 /**
@@ -66,10 +98,15 @@ function initNavigation() {
  */
 function initHeaderScroll() {
   const header = document.querySelector('.header');
-  
   if (!header) return;
 
-  const scrollThreshold = 100; // pixels to scroll before adding background
+  // Pages without a hero always show the solid header
+  if (!document.querySelector('.hero')) {
+    header.classList.add('header--scrolled');
+    return;
+  }
+
+  const scrollThreshold = 100;
 
   function updateHeader() {
     if (window.scrollY > scrollThreshold) {
@@ -79,10 +116,7 @@ function initHeaderScroll() {
     }
   }
 
-  // Run on load
   updateHeader();
-
-  // Run on scroll with passive listener for performance
   window.addEventListener('scroll', updateHeader, { passive: true });
 }
 
@@ -403,11 +437,9 @@ function initGalleryCarousel() {
       loop: false,
       align: useCenter ? 'center' : 'start',
       containScroll: 'trimSnaps',
-      // Enable snap to slides (dragFree: false = snap to slides)
       dragFree: false,
-      skipSnaps: false,
-      // Smooth snap animation
-      duration: 30,
+      skipSnaps: true,
+      duration: 42,
       startIndex: 0
     };
   };
