@@ -819,6 +819,9 @@
   font-size: var(--font-size-4xl);
   color: var(--text-primary);
   margin-bottom: var(--space-4);
+  @media (max-width: 600px) {
+    font-size: var(--font-size-3xl);
+  }
 }
 
 /* Intro text below title */
