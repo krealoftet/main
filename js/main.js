@@ -240,22 +240,18 @@ function initContactForm() {
   const weekdayHint = form.querySelector('#formiddag-weekday-hint');
   const helpWidgets = Array.from(form.querySelectorAll('.booking-help'));
   const dateInputs = () => Array.from(form.querySelectorAll('.js-booking-date'));
+  const syncDateInputDisplay = input => {
+    input.closest('.booking-date-input')?.classList.toggle('has-value', Boolean(input.value));
+  };
 
   form.setAttribute('novalidate', '');
 
   const minDate = todayISODate();
   dateInputs().forEach(input => {
     input.setAttribute('min', minDate);
-    input.addEventListener('click', () => {
-      if (typeof input.showPicker === 'function') {
-        try {
-          input.showPicker();
-        } catch (error) {
-          input.focus();
-        }
-      }
-    });
+    syncDateInputDisplay(input);
     input.addEventListener('change', () => {
+      syncDateInputDisplay(input);
       updateFormiddagAvailability();
       updateDateDuplicateError();
     });
@@ -523,7 +519,10 @@ function initContactForm() {
     btn.addEventListener('click', () => {
       const row = btn.closest('.booking-date-row');
       const input = row?.querySelector('.js-booking-date');
-      if (input) input.value = '';
+      if (input) {
+        input.value = '';
+        syncDateInputDisplay(input);
+      }
       row?.classList.remove('is-visible');
       syncDateRows();
       updateFormiddagAvailability();

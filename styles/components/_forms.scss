@@ -130,6 +130,20 @@
   right: var(--space-4);
 }
 
+.booking-date-placeholder {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: var(--space-4);
+  color: var(--text-secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.booking-date-input.has-value .booking-date-placeholder {
+  display: none;
+}
+
 .booking-date-row.has-remove-date .booking-date-icon {
   right: calc(var(--space-4) + 4.25rem);
 }
