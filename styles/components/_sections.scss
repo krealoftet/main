@@ -512,7 +512,7 @@
   justify-content: space-between;
   gap: var(--space-4); // 16px
   margin-top: var(--space-8); // 32px
-  margin-bottom: calc(-3 * var(--space-2));
+  margin-bottom: var(--space-4);
 }
 
 .inspiration-brand {
@@ -548,6 +548,33 @@
 
 .instagram-widget {
   margin-top: 0;
+}
+
+.instagram-consent-fallback {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.instagram-consent-fallback__photos {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--space-2);
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 520px) {
+  .instagram-consent-fallback__photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* About Me Section */
