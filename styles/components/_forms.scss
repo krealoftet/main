@@ -130,6 +130,11 @@
   right: var(--space-4);
 }
 
+.booking-date-input.has-value .booking-date-icon,
+.booking-date-row.has-remove-date .booking-date-icon {
+  display: none;
+}
+
 .booking-date-placeholder {
   position: absolute;
   z-index: 1;
@@ -144,8 +149,26 @@
   display: none;
 }
 
-.booking-date-row.has-remove-date .booking-date-icon {
-  right: calc(var(--space-4) + 4.25rem);
+.flatpickr-calendar {
+  z-index: 1000;
+  max-width: calc(100vw - 24px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover {
+  border-color: var(--action-primary);
+  background: var(--action-primary);
+}
+
+.flatpickr-day.today {
+  border-color: var(--action-primary);
 }
 
 .booking-label-row {

@@ -243,6 +243,11 @@ function initContactForm() {
   const syncDateInputDisplay = input => {
     input.closest('.booking-date-input')?.classList.toggle('has-value', Boolean(input.value));
   };
+  const focusDateInput = input => {
+    const visibleInput = input?._flatpickr?.altInput || input;
+    visibleInput?.focus();
+    input?._flatpickr?.open();
+  };
 
   form.setAttribute('novalidate', '');
 
@@ -250,6 +255,22 @@ function initContactForm() {
   dateInputs().forEach(input => {
     input.setAttribute('min', minDate);
     syncDateInputDisplay(input);
+    if (typeof window.flatpickr === 'function') {
+      const label = form.querySelector(`label[for="${input.id}"]`);
+      window.flatpickr(input, {
+        allowInput: false,
+        altInput: true,
+        altInputClass: 'form-input booking-date-display',
+        altFormat: 'j. F Y',
+        dateFormat: 'Y-m-d',
+        disableMobile: true,
+        locale: window.flatpickr.l10ns.da,
+        minDate,
+        onReady: (selectedDates, dateString, instance) => {
+          instance.altInput?.setAttribute('aria-label', label?.textContent.trim() || 'Ønsket dato');
+        }
+      });
+    }
     input.addEventListener('change', () => {
       syncDateInputDisplay(input);
       updateFormiddagAvailability();
@@ -366,9 +387,10 @@ function initContactForm() {
     const control = controlOverride || form.querySelector(`#${field}`) ||
       (field === 'datoer' ? form.querySelector('#dato-1') : null) ||
       form.querySelector(`[name="${field === 'anledning' ? 'Anledning' : ''}"]`);
-    if (control) {
-      if (message) control.setAttribute('aria-invalid', 'true');
-      else control.removeAttribute('aria-invalid');
+    const visibleControl = control?._flatpickr?.altInput || control;
+    if (visibleControl) {
+      if (message) visibleControl.setAttribute('aria-invalid', 'true');
+      else visibleControl.removeAttribute('aria-invalid');
     }
   }
 
@@ -416,7 +438,7 @@ function initContactForm() {
       firstInvalid = pastDate;
     }
 
-    if (firstInvalid) firstInvalid.focus();
+    if (firstInvalid) focusDateInput(firstInvalid);
     return !firstInvalid;
   }
 
@@ -439,7 +461,10 @@ function initContactForm() {
       setFieldError('datoer-error', duplicateMessage, duplicateDateInput);
     } else if (error.textContent === duplicateMessage) {
       setFieldError('datoer-error', '');
-      dateInputs().forEach(input => input.removeAttribute('aria-invalid'));
+      dateInputs().forEach(input => {
+        input.removeAttribute('aria-invalid');
+        input._flatpickr?.altInput?.removeAttribute('aria-invalid');
+      });
     }
   }
 
@@ -510,7 +535,7 @@ function initContactForm() {
       next.classList.add('is-visible');
       const removeBtn = next.querySelector('[data-remove-date]');
       if (removeBtn) removeBtn.hidden = false;
-      next.querySelector('.js-booking-date')?.focus();
+      focusDateInput(next.querySelector('.js-booking-date'));
       syncDateRows();
     });
   }
