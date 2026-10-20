@@ -6,14 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <!-- Cookiebot Consent Management - async for performance while maintaining blocking -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2b7fecf7-7810-484a-8b7b-f1e2af669cd8" data-blockingmode="auto" type="text/javascript" async></script>
+  <!-- Set consent defaults before Cookiebot initializes. -->
+  <script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_personalization: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', false);
+  </script>
+
+  <!-- Cookiebot auto-blocking loads synchronously as the first external script. -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2b7fecf7-7810-484a-8b7b-f1e2af669cd8" data-blockingmode="auto" type="text/javascript"></script>
   
   <!-- Primary Meta Tags -->
   <title>Mal din egen keramik i Barrit – Krealoftet</title>
   <meta name="title" content="Mal din egen keramik i Barrit – Krealoftet">
   <link rel="canonical" href="https://krealoftet.dk/">
-  <meta name="description" content="Mal din egen kop, skål eller tallerken i Barrit nær Vejle og Horsens. Et hyggeligt keramikværksted med 2,5 timers kreativ oplevelse for alle aldre.">
+  <meta name="description" content="Mal din egen kop eller skål i Barrit nær Vejle og Horsens. Et hyggeligt keramikværksted med 2,5 timers kreativ oplevelse for alle aldre.">
   <meta name="author" content="Krealoftet by Sommer">
   <meta name="robots" content="index, follow">
   <meta name="language" content="Danish">
@@ -26,7 +44,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://krealoftet.dk/">
   <meta property="og:title" content="Krealoftet by Sommer – Hyggeligt keramikværksted">
-  <meta property="og:description" content="Et lille, hyggeligt keramikværksted, hvor du kan male din egen kop, skål eller tallerken og nyde en kreativ pause fyldt med ro og fordybelse.">
+  <meta property="og:description" content="Et lille, hyggeligt keramikværksted, hvor I kan male jeres egen kop eller skål og nyde en kreativ pause fyldt med ro og fordybelse.">
   <meta property="og:image" content="https://krealoftet.dk/assets/images/meta_krealoftet.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -37,7 +55,7 @@
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://krealoftet.dk/">
   <meta property="twitter:title" content="Krealoftet by Sommer – Hyggeligt keramikværksted">
-  <meta property="twitter:description" content="Et lille, hyggeligt keramikværksted, hvor du kan male din egen kop, skål eller tallerken og nyde en kreativ pause fyldt med ro og fordybelse.">
+  <meta property="twitter:description" content="Et lille, hyggeligt keramikværksted, hvor I kan male jeres egen kop eller skål og nyde en kreativ pause fyldt med ro og fordybelse.">
   <meta property="twitter:image" content="https://krealoftet.dk/assets/images/meta_krealoftet.jpg">
   <meta property="twitter:creator" content="@krealoftet">
   <meta property="twitter:site" content="@krealoftet">
@@ -74,21 +92,20 @@
   </style>
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/styles/main.css?v=1.0.0">
+  <link rel="stylesheet" href="/styles/main.css?v=1.1.0">
+  <script>document.documentElement.classList.add('js');</script>
   
   <!-- Tracking Scripts (Cookiebot managed - only runs after consent) -->
   
   <!-- Google Analytics 4 (Statistics) -->
   <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-VZ090H12BQ"></script>
   <script type="text/plain" data-cookieconsent="statistics">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-VZ090H12BQ', { 'anonymize_ip': true });
   </script>
   
-  <!-- Microsoft Clarity (Statistics) -->
-  <script type="text/plain" data-cookieconsent="statistics">
+  <!-- Microsoft Clarity (Statistics and Marketing) -->
+  <script type="text/plain" data-cookieconsent="statistics, marketing">
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -131,7 +148,7 @@
     "@id": "https://krealoftet.dk/#business",
     "name": "Krealoftet by Sommer",
     "alternateName": "Krealoftet",
-    "description": "Hyggeligt keramikværksted i Barrit ved Horsens, hvor du kan male din egen kop, skål eller tallerken. Alle priser inkl. maling, glasering og brænding.",
+    "description": "Hyggeligt keramikværksted i Barrit ved Horsens, hvor I kan male jeres egen kop eller skål. Alle priser inkl. maling, glasering og brænding.",
     "url": "https://krealoftet.dk",
     "telephone": "+4542481606",
     "email": "johannesommer@live.dk",
@@ -223,17 +240,17 @@
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Keramik til maling",
-    "description": "Hånddrejet keramik du selv maler i værkstedet. Alle priser inkl. maling, glasering og brænding.",
+    "description": "Hånddrejet keramik I selv maler i værkstedet. Alle priser inkl. maling, glasering og brænding.",
     "itemListElement": [
       {
         "@type": "Product",
         "position": 1,
-        "name": "Fejringskopper",
-        "description": "Med Hurra graveret og blandede detaljer — en unik fejrings-kop der gør enhver anledning mindeværdig.",
-        "image": "https://krealoftet.dk/assets/images/fejringskop.webp",
+        "name": "Fejringskop",
+        "description": "Med \"Hurra\" graveret og blandede detaljer — en unik fejringskop der gør enhver anledning mindeværdig.",
+        "image": "https://krealoftet.dk/assets/images/stor-fejringskop.webp",
         "offers": {
           "@type": "Offer",
-          "price": "200",
+          "price": "275",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock",
           "seller": {
@@ -245,8 +262,8 @@
       {
         "@type": "Product",
         "position": 2,
-        "name": "Stemningskopper",
-        "description": "Noget graveret på siden eller bunden — en kop med et personligt præg, der fortæller din lille historie.",
+        "name": "Stemningsskifte pause",
+        "description": "En stemningskop med personlig gravering på siden eller bunden.",
         "image": "https://krealoftet.dk/assets/images/stemningskop.webp",
         "offers": {
           "@type": "Offer",
@@ -258,12 +275,12 @@
       {
         "@type": "Product",
         "position": 3,
-        "name": "Blomster kop",
-        "description": "Små blomster sat direkte på koppen giver et unikt og personligt præg. Ingen er ens.",
-        "image": "https://krealoftet.dk/assets/images/blomster_kop.webp",
+        "name": "Bee Happy",
+        "description": "Stemningskop med Bee Happy-relief og et personligt udtryk.",
+        "image": "https://krealoftet.dk/assets/images/stor-stemningskop.webp",
         "offers": {
           "@type": "Offer",
-          "price": "200",
+          "price": "250",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock"
         }
@@ -271,12 +288,12 @@
       {
         "@type": "Product",
         "position": 4,
-        "name": "Klassisk kop",
-        "description": "En god, solid hverdagskop med behagelig hank. Perfekt til morgenkaffen eller teen om eftermiddagen.",
-        "image": "https://krealoftet.dk/assets/images/kop_hank_standard.webp",
+        "name": "Blomsterkop",
+        "description": "Små blomster sat direkte på koppen giver et unikt og personligt præg. Ingen er ens.",
+        "image": "https://krealoftet.dk/assets/images/blomster_kop.webp",
         "offers": {
           "@type": "Offer",
-          "price": "150",
+          "price": "250",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock"
         }
@@ -284,7 +301,20 @@
       {
         "@type": "Product",
         "position": 5,
-        "name": "Rifflet kop",
+        "name": "Klassisk kop",
+        "description": "En god, solid hverdagskop med behagelig hank. Perfekt til morgenkaffen eller teen om eftermiddagen.",
+        "image": "https://krealoftet.dk/assets/images/kop_hank_standard.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "175",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 6,
+        "name": "Riflet kop",
         "description": "Rifflet mønster forneden giver koppen kant og tekstur. Hyggelig at holde og nem at male.",
         "image": "https://krealoftet.dk/assets/images/rifflet_kop.webp",
         "offers": {
@@ -296,7 +326,7 @@
       },
       {
         "@type": "Product",
-        "position": 6,
+        "position": 7,
         "name": "Triple bubble-kop",
         "description": "Tre runde bobler der giver koppen et karakteristisk udtryk. Blød i formen, sjov at male og dejlig at drikke af.",
         "image": "https://krealoftet.dk/assets/images/triple_bubble_kop.webp",
@@ -309,8 +339,8 @@
       },
       {
         "@type": "Product",
-        "position": 7,
-        "name": "Double bubble kop",
+        "position": 8,
+        "name": "Double bubble-kop",
         "description": "To større bobler med en fordybning i midten. Enklere silhuet end triple bubble, masser af personlighed.",
         "image": "https://krealoftet.dk/assets/images/double_bubble_kop.webp",
         "offers": {
@@ -322,7 +352,7 @@
       },
       {
         "@type": "Product",
-        "position": 8,
+        "position": 9,
         "name": "Stor lav skål",
         "description": "Masser af plads til frugt eller snacks. En skål der gør sig godt midt på bordet.",
         "image": "https://krealoftet.dk/assets/images/skaal_stor_lav.webp",
@@ -335,8 +365,8 @@
       },
       {
         "@type": "Product",
-        "position": 9,
-        "name": "Snack skål",
+        "position": 10,
+        "name": "Snackskål",
         "description": "En hyggelig lille skål til snacks og godt selskab. Nem at male og perfekt at have stående på bordet.",
         "image": "https://krealoftet.dk/assets/images/snack_skaal.webp",
         "offers": {
@@ -348,8 +378,34 @@
       },
       {
         "@type": "Product",
-        "position": 10,
-        "name": "Flettet hank",
+        "position": 11,
+        "name": "Slikskål",
+        "description": "En skål til slik og små snacks, med plads til lidt ekstra hygge.",
+        "image": "https://krealoftet.dk/assets/images/slikskaal.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "275",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 12,
+        "name": "Serveringsskål",
+        "description": "En stor serveringsskål til snacks, frugt eller servering ved bordet.",
+        "image": "https://krealoftet.dk/assets/images/stor-skaal.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "375",
+          "priceCurrency": "DKK",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 13,
+        "name": "Kop med flettet hank",
         "description": "En kop med en flettet hank der giver karakter. Skiller sig ud og er sjov at male.",
         "image": "https://krealoftet.dk/assets/images/kop_hank_flettet.webp",
         "offers": {
@@ -361,7 +417,7 @@
       },
       {
         "@type": "Product",
-        "position": 11,
+        "position": 14,
         "name": "Lille skål",
         "description": "En fin lille skål til snacks, nødder eller morgenyoghurt. Nem at male og hyggelig at have stående.",
         "image": "https://krealoftet.dk/assets/images/skaal_lille.webp",
@@ -374,13 +430,13 @@
       },
       {
         "@type": "Product",
-        "position": 12,
-        "name": "Sløjfe-kop",
+        "position": 15,
+        "name": "Sløjfekop",
         "description": "En elegant kop med en fin sløjfe-formet hank. Lidt ekstra detalje til den der elsker det.",
         "image": "https://krealoftet.dk/assets/images/kop_hank_sloejfe.webp",
         "offers": {
           "@type": "Offer",
-          "price": "175",
+          "price": "200",
           "priceCurrency": "DKK",
           "availability": "https://schema.org/InStock"
         }
@@ -529,7 +585,7 @@
             Tid til fordybelse. Tid til keramik.
           </h1>
           <p class="hero-description">
-            Et lille, hyggeligt værksted, hvor du kan fordybe dig i at male skåle og kopper, som jeg har drejet.
+            Et lille, hyggeligt værksted, hvor I kan fordybe jer i at male skåle og kopper, som jeg har drejet.
           </p>
           <div class="hero-actions">
             <a href="#kontakt" class="button button-primary">
@@ -550,13 +606,13 @@
           <div class="about-text">
             <h2 id="about-title" class="about-title">Om værkstedet</h2>
             <p>
-              <strong>Krealoftet</strong> er et lille keramikværksted i Barrit — nemt at nå fra <a href="https://www.visitvejle.dk/" target="_blank" rel="noopener noreferrer">Vejle</a>, <a href="https://www.kystlandet.dk/byer/horsens/besoeg-horsens" target="_blank" rel="noopener noreferrer">Horsens</a>, <a href="https://www.kystlandet.dk/byer/besoeg-juelsminde" target="_blank" rel="noopener noreferrer">Juelsminde</a>, Daugård, Hornsyld, Bjerre og Stenderup. Her kan du male på skåle, kopper og andre finurligheder. Alt keramik er hånddrejet og intet er nødvendigvis ens.
+              <strong>Krealoftet</strong> er et lille keramikværksted i Barrit — nemt at nå fra <a href="https://www.visitvejle.dk/" target="_blank" rel="noopener noreferrer">Vejle</a>, <a href="https://www.kystlandet.dk/byer/horsens/besoeg-horsens" target="_blank" rel="noopener noreferrer">Horsens</a>, <a href="https://www.kystlandet.dk/byer/besoeg-juelsminde" target="_blank" rel="noopener noreferrer">Juelsminde</a>, Daugård, Hornsyld, Bjerre og Stenderup. Her kan I male på skåle, kopper og andre finurligheder. Alt keramik er hånddrejet og intet er nødvendigvis ens.
             </p>
             <p>
               Mit værksted findes på loftet af vores hus, hvor væggene skråner og loftet sænker tempoet. Her er plads til fordybelse, gode snakke og rum for at være kreativ.
             </p>
             <p>
-              Min hensigt er at hænderne arbejder og hovedet slapper af, jeg håber i mærker samme stemning når i kommer på besøg.
+              Min hensigt er at hænderne arbejder og hovedet slapper af — jeg håber, I mærker samme stemning, når I kommer på besøg.
             </p>
           </div>
         </div>
@@ -569,7 +625,7 @@
         <header class="section-header">
           <h2 id="praktisk-title" class="section-title">Praktisk</h2>
           <p class="section-subtitle">
-            Alt du behøver vide før dit besøg
+            Alt I behøver vide før jeres besøg
           </p>
         </header>
         
@@ -626,7 +682,7 @@
         </div>
         
         <p class="praktisk-note">
-          Dine færdige ting kan hentes inden for 10 hverdage, når de har været igennem glasering og brænding.
+          Jeres færdige ting kan hentes inden for 10 hverdage, når de har været igennem glasering og brænding.
         </p>
         
         <div class="praktisk-pricing">
@@ -643,14 +699,14 @@
             <p class="praktisk-pricing-text">Se priseksempler nedenfor.</p>
             <p class="praktisk-pricing-text">
               <strong>Keramik fra 100 kr. pr. del</strong><br>
-              Prisen inkluderer altid maling og brænding.
+              Prisen inkluderer altid maling, glasering og brænding.
             </p>
           </div>
         </div>
         
         <div class="praktisk-cta">
           <a href="#kontakt" class="button button-primary">
-            Book din plads
+            Book jeres plads
           </a>
         </div>
       </div>
@@ -662,7 +718,7 @@
         <header class="section-header">
           <h2 id="gallery-title" class="section-title">Keramik og priser</h2>
           <p class="section-subtitle">
-            Når du ankommer, vælger du det keramik, du har lyst til at male på. Alle priser er inkl. maling, glasering og brænding.
+            Når I ankommer, vælger I det keramik, I har lyst til at male på. Alle priser er inkl. maling, glasering og brænding.
           </p>
         </header>
         
@@ -673,8 +729,8 @@
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
-                    src="/assets/images/fejringskop.webp"
-                    alt="Fejringskopper – hånddrejet keramikkop med Hurra gravering"
+                    src="/assets/images/stor-fejringskop.webp"
+                    alt="Fejringskop – hånddrejet keramikkop med Hurra gravering"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -683,24 +739,24 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Fejringskopper</h3>
-                    <p class="product-card-description" itemprop="description">Med "Hurra" graveret og blandede detaljer — en unik fejrings-kop der gør enhver anledning mindeværdig.</p>
+                    <h3 class="product-card-title" itemprop="name">Fejringskop</h3>
+                    <p class="product-card-description" itemprop="description">Med "Hurra" graveret og blandede detaljer — en unik fejringskop der gør enhver anledning mindeværdig.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value" itemprop="price" content="200">200 DKK</span>
+                    <span class="price-value" itemprop="price" content="275">275 DKK</span>
                     <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
               </article>
 
-              <!-- 2. Stemningskopper -->
+              <!-- 2. Stemningsskifte pause -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/stemningskop.webp"
-                    alt="Stemningskopper – hånddrejet keramikkop med personlig gravering"
+                    alt="Stemningskop – hånddrejet keramikkop med personlig gravering"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -709,8 +765,8 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Stemningskopper</h3>
-                    <p class="product-card-description" itemprop="description">Noget graveret på siden eller bunden — en kop med et personligt præg, der fortæller din lille historie.</p>
+                    <h3 class="product-card-title" itemprop="name">Stemningsskifte pause</h3>
+                    <p class="product-card-description" itemprop="description">En stemningskop med personlig gravering på siden eller bunden.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
@@ -721,12 +777,12 @@
                 </div>
               </article>
 
-              <!-- 3. Blomster kop -->
+              <!-- 3. Bee Happy -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
-                    src="/assets/images/blomster_kop.webp"
-                    alt="Blomster kop – hånddrejet keramikkop med små blomsterdetaljer"
+                    src="/assets/images/stor-stemningskop.webp"
+                    alt="Bee Happy – stor hånddrejet stemningskop med relief"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -735,24 +791,50 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Blomster kop</h3>
+                    <h3 class="product-card-title" itemprop="name">Bee Happy</h3>
+                    <p class="product-card-description" itemprop="description">En stemningskop med et særligt Bee Happy-design.</p>
+                  </div>
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
+                    <span class="price-label">Vejledende pris:</span>
+                    <span class="price-value" itemprop="price" content="250">250 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
+                  </p>
+                </div>
+              </article>
+
+              <!-- 4. Blomster kop -->
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
+                <div class="product-card-image">
+                  <img
+                    src="/assets/images/blomster_kop.webp"
+                    alt="Blomsterkop – hånddrejet keramikkop med små blomsterdetaljer"
+                    width="300"
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
+                </div>
+                <div class="product-card-info">
+                  <div class="product-card-content">
+                    <h3 class="product-card-title" itemprop="name">Blomsterkop</h3>
                     <p class="product-card-description" itemprop="description">Små blomster sat direkte på koppen giver et unikt og personligt præg. Ingen er ens.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value" itemprop="price" content="200">200 DKK</span>
+                    <span class="price-value" itemprop="price" content="250">250 DKK</span>
                     <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
               </article>
 
-              <!-- 4. Klassisk kop med hank -->
+              <!-- 5. Klassisk kop med hank -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/kop_hank_standard.webp"
-                    alt="Klassisk kop – hånddrejet keramikkop du selv maler i værkstedet"
+                    alt="Klassisk kop – hånddrejet keramikkop I selv maler i værkstedet"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -767,18 +849,18 @@
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value" itemprop="price" content="150">150 DKK</span>
+                    <span class="price-value" itemprop="price" content="175">175 DKK</span>
                     <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
               </article>
 
-              <!-- 5. Rifflet kop -->
+              <!-- 6. Rifflet kop -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/rifflet_kop.webp"
-                    alt="Rifflet kop – hånddrejet keramikkop med rifflet mønster forneden"
+                    alt="Riflet kop – hånddrejet keramikkop med riflet mønster forneden"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -787,8 +869,8 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Rifflet kop</h3>
-                    <p class="product-card-description" itemprop="description">Rifflet mønster forneden giver koppen kant og tekstur. Hyggelig at holde og nem at male.</p>
+                    <h3 class="product-card-title" itemprop="name">Riflet kop</h3>
+                    <p class="product-card-description" itemprop="description">Riflet mønster forneden giver koppen kant og tekstur. Hyggelig at holde og nem at male.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
@@ -799,7 +881,7 @@
                 </div>
               </article>
 
-              <!-- 6. Triple bubble-kop -->
+              <!-- 7. Triple bubble-kop -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
@@ -825,12 +907,12 @@
                 </div>
               </article>
 
-              <!-- 7. Double bubble kop -->
+              <!-- 8. Double bubble kop -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/double_bubble_kop.webp"
-                    alt="Double bubble kop – hånddrejet keramikkop med to bobler og fordybning"
+                    alt="Double bubble-kop – hånddrejet keramikkop med to bobler og fordybning"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -839,7 +921,7 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Double bubble kop</h3>
+                    <h3 class="product-card-title" itemprop="name">Double bubble-kop</h3>
                     <p class="product-card-description" itemprop="description">To større bobler med en fordybning i midten. Enklere silhuet end triple bubble, masser af personlighed.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -851,12 +933,12 @@
                 </div>
               </article>
 
-              <!-- 8. Stor lav skål -->
+              <!-- 9. Stor lav skål -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/skaal_stor_lav.webp"
-                    alt="Stor lav skål – hånddrejet keramikskål du selv maler i værkstedet"
+                    alt="Stor lav skål – hånddrejet keramikskål I selv maler i værkstedet"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -877,12 +959,12 @@
                 </div>
               </article>
 
-              <!-- 9. Snack skål -->
+              <!-- 10. Snack skål -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/snack_skaal.webp"
-                    alt="Snack skål – hånddrejet keramikskål du selv maler i værkstedet"
+                    alt="Snackskål – hånddrejet keramikskål I selv maler i værkstedet"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -891,7 +973,7 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Snack skål</h3>
+                    <h3 class="product-card-title" itemprop="name">Snackskål</h3>
                     <p class="product-card-description" itemprop="description">En hyggelig lille skål til snacks og godt selskab. Nem at male og perfekt at have stående på bordet.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -903,12 +985,12 @@
                 </div>
               </article>
 
-              <!-- 11. Kop med flettet hank -->
+              <!-- 11. Slikskål -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
-                    src="/assets/images/kop_hank_flettet.webp"
-                    alt="Kop med flettet hank – hånddrejet keramikkop du selv maler i værkstedet"
+                    src="/assets/images/slikskaal.webp"
+                    alt="Slikskål – hånddrejet skål til slik og små snacks"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -917,7 +999,59 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Flettet hank</h3>
+                    <h3 class="product-card-title" itemprop="name">Slikskål</h3>
+                    <p class="product-card-description" itemprop="description">En skål til slik og små snacks, med plads til lidt ekstra hygge.</p>
+                  </div>
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
+                    <span class="price-label">Vejledende pris:</span>
+                    <span class="price-value" itemprop="price" content="275">275 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
+                  </p>
+                </div>
+              </article>
+
+              <!-- 12. Serveringsskål -->
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
+                <div class="product-card-image">
+                  <img
+                    src="/assets/images/stor-skaal.webp"
+                    alt="Serveringsskål – stor hånddrejet skål til snacks og servering"
+                    width="300"
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
+                </div>
+                <div class="product-card-info">
+                  <div class="product-card-content">
+                    <h3 class="product-card-title" itemprop="name">Serveringsskål</h3>
+                    <p class="product-card-description" itemprop="description">En stor serveringsskål til snacks, frugt eller servering ved bordet.</p>
+                  </div>
+                  <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="DKK">
+                    <span class="price-label">Vejledende pris:</span>
+                    <span class="price-value" itemprop="price" content="375">375 DKK</span>
+                    <meta itemprop="availability" content="https://schema.org/InStock">
+                  </p>
+                </div>
+              </article>
+
+              <!-- 13. Kop med flettet hank -->
+              <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
+                <div class="product-card-image">
+                  <img
+                    src="/assets/images/kop_hank_flettet.webp"
+                    alt="Kop med flettet hank – hånddrejet keramikkop I selv maler i værkstedet"
+                    width="300"
+                    height="300"
+                    loading="lazy"
+                    itemprop="image"
+                  >
+                </div>
+                <div class="product-card-info">
+                  <div class="product-card-content">
+                    <h3 class="product-card-title" itemprop="name">Kop med flettet hank</h3>
                     <p class="product-card-description" itemprop="description">En kop med en flettet hank der giver karakter. Skiller sig ud og er sjov at male.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -929,12 +1063,12 @@
                 </div>
               </article>
 
-              <!-- 12. Lille skål -->
+              <!-- 14. Lille skål -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/skaal_lille.webp"
-                    alt="Lille skål – hånddrejet keramikskål du selv maler i værkstedet"
+                    alt="Lille skål – hånddrejet keramikskål I selv maler i værkstedet"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -955,12 +1089,12 @@
                 </div>
               </article>
 
-              <!-- 13. Kop med sløjfe-hank -->
+              <!-- 15. Kop med sløjfe-hank -->
               <article class="embla__slide product-card" itemscope itemtype="https://schema.org/Product">
                 <div class="product-card-image">
                   <img
                     src="/assets/images/kop_hank_sloejfe.webp"
-                    alt="Kop med sløjfe-hank – hånddrejet keramikkop du selv maler i værkstedet"
+                    alt="Sløjfekop – hånddrejet keramikkop I selv maler i værkstedet"
                     width="300"
                     height="300"
                     loading="lazy"
@@ -969,13 +1103,13 @@
                 </div>
                 <div class="product-card-info">
                   <div class="product-card-content">
-                    <h3 class="product-card-title" itemprop="name">Sløjfe-kop</h3>
+                    <h3 class="product-card-title" itemprop="name">Sløjfekop</h3>
                     <p class="product-card-description" itemprop="description">En elegant kop med en fin sløjfe-formet hank. Lidt ekstra detalje til den der elsker det.</p>
                   </div>
                   <p class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="DKK">
                     <span class="price-label">Vejledende pris:</span>
-                    <span class="price-value" itemprop="price" content="175">175 DKK</span>
+                    <span class="price-value" itemprop="price" content="200">200 DKK</span>
                     <meta itemprop="availability" content="https://schema.org/InStock">
                   </p>
                 </div>
@@ -1088,13 +1222,17 @@
 
         <!-- EmbedSocial Instagram Feed -->
         <div class="instagram-widget">
-          <div class="embedsocial-hashtag" data-ref="3c074dd3d1244d86ef25f165dc073b8d38344ebe">
-            <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding" href="https://embedsocial.com/social-media-aggregator/" target="_blank" title="Instagram widget">
-              <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial">
-              <div class="es-widget-branding-text">Instagram widget</div>
-            </a>
+          <div class="cookieconsent-optout-marketing instagram-consent-fallback">
+            <div class="instagram-consent-fallback__photos">
+              <img src="/assets/images/stor-fejringskop.webp" alt="Hånddrejet fejringskop" width="240" height="240" loading="lazy">
+              <img src="/assets/images/blomster_kop.webp" alt="Kop med små blomsterdetaljer" width="240" height="240" loading="lazy">
+              <img src="/assets/images/slikskaal.webp" alt="Hånddrejet slikskål" width="240" height="240" loading="lazy">
+              <img src="/assets/images/stor-skaal.webp" alt="Stor hånddrejet serveringsskål" width="240" height="240" loading="lazy">
+            </div>
           </div>
-          <script>
+          <div class="embedsocial-hashtag" data-ref="3c074dd3d1244d86ef25f165dc073b8d38344ebe">
+          </div>
+          <script type="text/plain" data-cookieconsent="marketing">
             (function(d, s, id) {
               var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id;
               js.src = "https://embedsocial.com/cdn/ht.js";
@@ -1142,7 +1280,7 @@
                 Til daglig er jeg pædagog og jeg elsker mit arbejde, men jeg elsker også at være kreativ og skabe med mine hænder når jeg ikke er på arbejde. Denne glæde vil jeg elske at dele med andre.
               </p>
               <p>
-                Jeg glæder mig til at byde dig velkommen i Krealoftet.
+                Jeg glæder mig til at byde jer velkommen i Krealoftet.
               </p>
             </div>
             <a href="#kontakt" class="button button-primary">
@@ -1157,65 +1295,286 @@
     <section id="kontakt" class="contact contact-simple" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-form-wrapper">
-            <h2 id="contact-title" class="contact-title">Lad os finde en tid i kalenderen</h2>
+            <h2 id="contact-title" class="contact-title">Kig forbi Krealoftet</h2>
             <p class="contact-intro">
-              Vil du høre mere eller booke en plads? Skriv endelig — jeg glæder mig til at byde dig velkommen i vores kreative univers.
+              Fortæl mig lidt om jeres besøg, så finder vi en dag, der passer jer.
             </p>
             
-            <form class="contact-form" id="contact-form" aria-labelledby="contact-title">
+            <div
+              id="booking-success"
+              class="booking-success"
+              hidden
+              tabindex="-1"
+              role="status"
+              aria-live="polite"
+            >
+              <h3 class="booking-success__title" id="booking-success-title" tabindex="-1">Tak for jeres forespørgsel! ✅</h3>
+              <p>
+                Jeg har modtaget jeres ønsker og vender tilbage på mail inden for
+                24 timer
+                med et forslag til tid. Når datoen er på plads, betales et depositum på 50&nbsp;kr. pr. person for at sikre jeres plads.
+              </p>
+              <p>
+                Har I spørgsmål imens, er I velkomne til at ringe på
+                <a href="tel:+4542481606">+45 42 48 16 06</a>.
+              </p>
+            </div>
+
+            <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" aria-labelledby="contact-title">
               <!-- Web3Forms Configuration -->
               <input type="hidden" name="access_key" value="5dc93b09-e4ea-4671-a904-4f224e21d041">
-              <input type="hidden" name="subject" value="Ny henvendelse via Krealoftet">
+              <input type="hidden" name="subject" id="booking-subject" value="Booking-forespørgsel via Krealoftet">
               <input type="hidden" name="from_name" value="Krealoftet">
               <input type="hidden" name="replyto" value="">
+              <input type="hidden" name="Onskede datoer" id="onskede-datoer" value="">
               <!-- Honeypot Spam Protection -->
               <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-              
-              <div class="form-group">
-                <label for="name" class="form-label">Navn</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  class="form-input" 
-                  placeholder="Hej, mit navn er..."
-                  required
-                >
+
+              <div class="booking-form-alert" id="booking-form-alert" aria-live="assertive"></div>
+
+              <div class="booking-step is-active" data-step="1">
+                <div class="booking-form-section" aria-labelledby="booking-step-1-title">
+                  <h3 class="booking-section-title visually-hidden" id="booking-step-1-title">Begivenhed</h3>
+                <fieldset class="form-group booking-fieldset">
+                  <legend class="form-label" id="booking-step-1-focus" tabindex="-1">Anledning</legend>
+                  <div class="booking-chips" role="radiogroup" aria-required="true" aria-describedby="anledning-error">
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Hyggetid" data-anledning="hyggetid" required>
+                      <span>Hyggetid</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Fødselsdag" data-anledning="foedselsdag">
+                      <span>Fødselsdag</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Børne- & teenagefødselsdag" data-anledning="boerne-teenage">
+                      <span>Børne- &amp; teenagefødselsdag</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Barsels- & mødregruppe" data-anledning="barsel">
+                      <span>Barsels- &amp; mødregruppe</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Polterabend" data-anledning="polterabend">
+                      <span>Polterabend</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Kollegaer / firma" data-anledning="firma">
+                      <span>Kollegaer / firma</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Anledning" value="Andet" data-anledning="andet">
+                      <span>Andet</span>
+                    </label>
+                  </div>
+                  <p class="form-error" id="anledning-error" aria-live="polite" aria-atomic="true"></p>
+                </fieldset>
+
+                <div class="form-group">
+                  <div class="booking-label-row">
+                    <label for="antal" class="form-label booking-label-inline">Forventet antal deltagere</label>
+                    <span class="booking-help">
+                      <button
+                        type="button"
+                        class="booking-help__trigger"
+                        id="booking-capacity-help"
+                        aria-label="Hjælp til antal deltagere"
+                        aria-describedby="booking-capacity-hint"
+                        aria-expanded="false"
+                        aria-controls="booking-capacity-hint"
+                      >
+                        <svg class="booking-help__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.059.852l-.708 2.828a.75.75 0 0 0 1.059.852l.041-.02M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                      </button>
+                      <span class="booking-help__tooltip" id="booking-capacity-hint" role="tooltip" aria-hidden="true">
+                        Krealoftet har plads til højst 8 personer. Ved særlige anledninger er I velkomne til at kontakte mig, så ser vi, hvad der kan lade sig gøre.
+                      </span>
+                    </span>
+                  </div>
+                  <div class="booking-select-wrap">
+                    <select id="antal" name="Antal deltagere" class="form-input booking-select" required aria-describedby="antal-error">
+                      <option value="" selected disabled>Vælg antal</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="Flere end 8">Flere end 8</option>
+                    </select>
+                    <svg class="booking-select-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </div>
+                  <p class="form-error" id="antal-error" aria-live="polite" aria-atomic="true"></p>
+                </div>
+                </div>
+
+                <div class="booking-step-nav">
+                  <button type="button" class="button button-primary js-only" id="booking-next">Næste</button>
+                </div>
               </div>
-              
-              <div class="form-group">
-                <label for="email" class="form-label">E-mail</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  class="form-input" 
-                  placeholder="Så jeg kan skrive tilbage til dig"
-                  required
-                >
+
+              <div class="booking-step" data-step="2">
+                <div class="booking-form-section" aria-labelledby="booking-date-title">
+                  <h3 class="booking-section-title visually-hidden" id="booking-step-2-title">Dato</h3>
+                <fieldset class="form-group booking-fieldset">
+                  <legend class="form-label" id="datoer-label" tabindex="-1">Ønsket dato</legend>
+                  <div class="booking-dates" id="booking-dates" aria-describedby="datoer-error">
+                    <div class="booking-date-row js-booking-date-row is-visible">
+                      <label for="dato-1" class="visually-hidden">Ønsket dato 1</label>
+                      <div class="booking-date-input">
+                        <input type="date" id="dato-1" name="Dato 1" class="form-input js-booking-date" required>
+                        <svg class="booking-date-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25m10.5-2.25v2.25M3 8.25h18m-16.5-4.5h15A2.25 2.25 0 0 1 21.75 6v14.25A2.25 2.25 0 0 1 19.5 22.5h-15a2.25 2.25 0 0 1-2.25-2.25V6a2.25 2.25 0 0 1 2.25-2.25Zm3.75 7.5h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm3.75-3h.008v.008H12v-.008Zm0 3h.008v.008H12v-.008Zm3.75-3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                        </svg>
+                      </div>
+                      <button type="button" class="booking-date-remove js-only" data-remove-date aria-label="Fjern dato 1" hidden>Fjern</button>
+                    </div>
+                    <div class="booking-date-row js-booking-date-row js-optional-date">
+                      <label for="dato-2" class="visually-hidden">Ønsket dato 2</label>
+                      <div class="booking-date-input">
+                        <input type="date" id="dato-2" name="Dato 2" class="form-input js-booking-date">
+                        <svg class="booking-date-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25m10.5-2.25v2.25M3 8.25h18m-16.5-4.5h15A2.25 2.25 0 0 1 21.75 6v14.25A2.25 2.25 0 0 1 19.5 22.5h-15a2.25 2.25 0 0 1-2.25-2.25V6a2.25 2.25 0 0 1 2.25-2.25Zm3.75 7.5h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm3.75-3h.008v.008H12v-.008Zm0 3h.008v.008H12v-.008Zm3.75-3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                        </svg>
+                      </div>
+                      <button type="button" class="booking-date-remove js-only" data-remove-date aria-label="Fjern dato 2" hidden>Fjern</button>
+                    </div>
+                    <div class="booking-date-row js-booking-date-row js-optional-date">
+                      <label for="dato-3" class="visually-hidden">Ønsket dato 3</label>
+                      <div class="booking-date-input">
+                        <input type="date" id="dato-3" name="Dato 3" class="form-input js-booking-date">
+                        <svg class="booking-date-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25m10.5-2.25v2.25M3 8.25h18m-16.5-4.5h15A2.25 2.25 0 0 1 21.75 6v14.25A2.25 2.25 0 0 1 19.5 22.5h-15a2.25 2.25 0 0 1-2.25-2.25V6a2.25 2.25 0 0 1 2.25-2.25Zm3.75 7.5h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm3.75-3h.008v.008H12v-.008Zm0 3h.008v.008H12v-.008Zm3.75-3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                        </svg>
+                      </div>
+                      <button type="button" class="booking-date-remove js-only" data-remove-date aria-label="Fjern dato 3" hidden>Fjern</button>
+                    </div>
+                  </div>
+                  <button type="button" class="booking-add-date js-only" id="booking-add-date">+ Tilføj en dato mere</button>
+                  <label class="booking-checkbox">
+                    <input type="checkbox" name="Fleksibel med dato" value="Ja" id="fleksibel">
+                    <span>Vi er fleksible med datoen</span>
+                  </label>
+                  <p class="form-error" id="datoer-error" aria-live="polite" aria-atomic="true"></p>
+                </fieldset>
+
+                <fieldset class="form-group booking-fieldset">
+                  <legend class="form-label booking-label-row booking-label-inline">
+                    <span>Tidspunkt på dagen (valgfrit)</span>
+                    <span class="booking-help">
+                      <button
+                        type="button"
+                        class="booking-help__trigger"
+                        id="booking-time-help"
+                        aria-label="Hjælp til præcist tidspunkt"
+                        aria-describedby="booking-time-hint"
+                        aria-expanded="false"
+                        aria-controls="booking-time-hint"
+                      >
+                        <svg class="booking-help__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.059.852l-.708 2.828a.75.75 0 0 0 1.059.852l.041-.02M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                      </button>
+                      <span class="booking-help__tooltip" id="booking-time-hint" role="tooltip" aria-hidden="true">
+                        Har I et præcist tidsrum i tankerne, så skriv det gerne i noterne.
+                      </span>
+                    </span>
+                  </legend>
+                  <div class="booking-chips" role="radiogroup">
+                    <label class="booking-chip">
+                      <input type="radio" name="Tidspunkt pa dagen" value="Formiddag" aria-describedby="formiddag-weekday-hint">
+                      <span>Formiddag</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Tidspunkt pa dagen" value="Middag">
+                      <span>Middag</span>
+                    </label>
+                    <label class="booking-chip">
+                      <input type="radio" name="Tidspunkt pa dagen" value="Eftermiddag">
+                      <span>Eftermiddag</span>
+                    </label>
+                  </div>
+                  <p class="booking-hint" id="formiddag-weekday-hint" role="status" aria-live="polite" hidden></p>
+                </fieldset>
+                </div>
+
+                <div class="booking-step-nav booking-step-nav--split">
+                  <button type="button" class="button button-outline js-only" id="booking-back">Tilbage</button>
+                  <button type="button" class="button button-primary js-only" id="booking-next-date">Næste</button>
+                </div>
               </div>
-              
-              <div class="form-group">
-                <label for="message" class="form-label">Besked</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  class="form-textarea" 
-                  rows="4" 
-                  placeholder="Skriv bare, hvad du har på hjertet..."
-                  required
-                ></textarea>
+
+              <div class="booking-step" data-step="3">
+                <h3 class="booking-step-title visually-hidden" id="booking-step-3-title">Informationer</h3>
+
+                <div class="booking-summary" id="booking-summary">
+                  <p class="booking-summary__text" id="booking-summary-text"></p>
+                  <button type="button" class="booking-summary__edit" id="booking-edit">Ret</button>
+                </div>
+
+                <div class="form-group">
+                  <label for="name" class="form-label">Navn</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="Navn"
+                    class="form-input"
+                    autocomplete="name"
+                    required
+                    aria-describedby="name-error"
+                  >
+                  <p class="form-error" id="name-error" aria-live="polite" aria-atomic="true"></p>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="E-mail"
+                    class="form-input"
+                    autocomplete="email"
+                    inputmode="email"
+                    required
+                    aria-describedby="email-error"
+                  >
+                  <p class="form-error" id="email-error" aria-live="polite" aria-atomic="true"></p>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone" class="form-label">Telefonnummer (valgfrit)</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="Telefon"
+                    class="form-input"
+                    autocomplete="tel"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="notes" class="form-label">Kommentarer / noter (valgfrit)</label>
+                  <textarea
+                    id="notes"
+                    name="Noter"
+                    class="form-textarea"
+                    rows="4"
+                    placeholder="F.eks. tidspunkt på dagen, særlige ønsker eller spørgsmål"
+                  ></textarea>
+                </div>
+
+                <div class="booking-step-nav booking-step-nav--split">
+                  <button type="button" class="button button-outline js-only" id="booking-back-contact">Tilbage</button>
+                  <button type="submit" class="button button-primary">
+                    Send forespørgsel
+                  </button>
+                </div>
               </div>
-              
-              <button type="submit" class="button button-primary">
-                <span class="button-icon button-icon-left">
-                  <!-- HeroIcon: heart (solid) -->
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
-                  </svg>
-                </span>
-                Skriv til mig
-              </button>
             </form>
           </div>
       </div>
@@ -1252,14 +1611,14 @@
           </a>
         </div>
         
-        <p class="footer-copyright">&copy; 2025 Krealoftet · <time datetime="2026-05-25">Senest opdateret maj 2026</time></p>
+        <p class="footer-copyright">&copy; 2026 Krealoftet · <time datetime="2026-10">Senest opdateret oktober 2026</time></p>
       </div>
     </div>
   </footer>
 
   <!-- Scripts: Deferred to not block rendering -->
-  <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js" defer></script>
-  <script src="/js/main.js?v=1.0.0" defer></script>
+  <script src="https://unpkg.com/embla-carousel@8.6.0/embla-carousel.umd.js" integrity="sha384-XGqLM9+dJ+PFOMZn6IuZgRRIoxcAT5fx4eIZCx7K3O2Dj5RA7EOlJ3yOS8Jd+kiY" crossorigin="anonymous" defer></script>
+  <script src="/js/main.js?v=1.1.0" defer></script>
   
   
   <!-- Service Worker Registration -->

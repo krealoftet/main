@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
   initNavigation();
   initHeaderScroll();
   initSmoothScrolling();
+  initContactForm();
+  checkFormSuccess();
   
   // Non-critical: Defer to improve TTI
   requestIdleCallback(() => {
-    initContactForm();
     initImageLazyLoading();
-    checkFormSuccess();
   }, { timeout: 2000 });
   
   // Carousel: Initialize only when visible (IntersectionObserver)
@@ -158,40 +158,465 @@ function checkRateLimit() {
   return { allowed: true, minutesLeft: 0 };
 }
 
+const ANLEDNING_ALIASES = {
+  hyggetid: 'hyggetid',
+  foedselsdag: 'foedselsdag',
+  'fødselsdag': 'foedselsdag',
+  'boerne-teenage': 'boerne-teenage',
+  'boerne-og-teenagefoedselsdag': 'boerne-teenage',
+  barsel: 'barsel',
+  'barsels-og-moedregrupper': 'barsel',
+  polterabend: 'polterabend',
+  firma: 'firma',
+  'kollegaer-firma': 'firma',
+  andet: 'andet'
+};
+
+const DANISH_MONTHS_SHORT = [
+  'jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun.',
+  'jul.', 'aug.', 'sep.', 'okt.', 'nov.', 'dec.'
+];
+
+function todayISODate() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 10);
+}
+
+function parseISODate(iso) {
+  if (!iso) return null;
+  const parts = iso.split('-').map(Number);
+  if (parts.length !== 3 || parts.some(n => Number.isNaN(n))) return null;
+  return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
+function formatDateDot(iso) {
+  const date = parseISODate(iso);
+  if (!date) return '';
+  const dd = String(date.getDate()).padStart(2, '0');
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  return `${dd}.${mm}.${date.getFullYear()}`;
+}
+
+function formatDateShortDa(iso) {
+  const date = parseISODate(iso);
+  if (!date) return '';
+  return `${date.getDate()}. ${DANISH_MONTHS_SHORT[date.getMonth()]}`;
+}
+
+function getAnledningParam() {
+  const fromSearch = new URLSearchParams(window.location.search).get('anledning');
+  if (fromSearch) return fromSearch;
+  const hash = window.location.hash || '';
+  const queryIndex = hash.indexOf('?');
+  if (queryIndex !== -1) {
+    return new URLSearchParams(hash.slice(queryIndex)).get('anledning');
+  }
+  return null;
+}
+
 /**
  * Initialize contact form for Web3Forms
  */
 function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
-  
+
+  document.documentElement.classList.add('js-enabled');
   const submitBtn = form.querySelector('button[type="submit"]');
-  const emailInput = form.querySelector('[name="email"]');
+  const emailInput = form.querySelector('#email');
   const replyToInput = form.querySelector('[name="replyto"]');
-  
+  const subjectInput = form.querySelector('#booking-subject');
+  const datesField = form.querySelector('#onskede-datoer');
+  const steps = Array.from(form.querySelectorAll('.booking-step'));
+  const nextBtn = form.querySelector('#booking-next');
+  const nextDateBtn = form.querySelector('#booking-next-date');
+  const backBtn = form.querySelector('#booking-back');
+  const backContactBtn = form.querySelector('#booking-back-contact');
+  const editBtn = form.querySelector('#booking-edit');
+  const addDateBtn = form.querySelector('#booking-add-date');
+  const antalSelect = form.querySelector('#antal');
+  const morningInput = form.querySelector('[name="Tidspunkt pa dagen"][value="Formiddag"]');
+  const weekdayHint = form.querySelector('#formiddag-weekday-hint');
+  const helpWidgets = Array.from(form.querySelectorAll('.booking-help'));
+  const dateInputs = () => Array.from(form.querySelectorAll('.js-booking-date'));
+
+  form.setAttribute('novalidate', '');
+
+  const minDate = todayISODate();
+  dateInputs().forEach(input => {
+    input.setAttribute('min', minDate);
+    input.addEventListener('click', () => {
+      if (typeof input.showPicker === 'function') {
+        try {
+          input.showPicker();
+        } catch (error) {
+          input.focus();
+        }
+      }
+    });
+    input.addEventListener('change', () => {
+      updateFormiddagAvailability();
+      updateDateDuplicateError();
+    });
+  });
+
+  const anledningParam = getAnledningParam();
+  if (anledningParam) {
+    const slug = ANLEDNING_ALIASES[anledningParam.toLowerCase()];
+    const match = form.querySelector(`[name="Anledning"][data-anledning="${slug}"]`);
+    if (match) match.checked = true;
+  }
+
+  function currentStep() {
+    const active = form.querySelector('.booking-step.is-active');
+    return active ? Number(active.dataset.step) : 1;
+  }
+
+  function goToStep(step) {
+    steps.forEach(panel => {
+      panel.classList.toggle('is-active', Number(panel.dataset.step) === step);
+    });
+    if (step === 3) updateSummary();
+
+    const focusTargets = {
+      1: 'booking-step-1-focus',
+      2: 'datoer-label',
+      3: 'name'
+    };
+    const focusTarget = document.getElementById(focusTargets[step]);
+    if (!focusTarget) return;
+    const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+    const top = focusTarget.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    focusTarget.focus({ preventScroll: true });
+  }
+
+  helpWidgets.forEach(helpWidget => {
+    const helpButton = helpWidget.querySelector('.booking-help__trigger');
+    const tooltip = helpWidget.querySelector('.booking-help__tooltip');
+    if (!helpButton || !tooltip) return;
+
+    const setTooltipOpen = isOpen => {
+      helpWidget.classList.toggle('is-open', isOpen);
+      helpButton.setAttribute('aria-expanded', String(isOpen));
+      tooltip.setAttribute('aria-hidden', String(!isOpen));
+    };
+
+    helpButton.addEventListener('click', () => setTooltipOpen(true));
+    helpButton.addEventListener('focus', () => setTooltipOpen(true));
+    helpButton.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        setTooltipOpen(false);
+        helpButton.blur();
+      }
+    });
+    helpWidget.addEventListener('focusout', event => {
+      if (!helpWidget.contains(event.relatedTarget)) setTooltipOpen(false);
+    });
+    document.addEventListener('click', event => {
+      if (!helpWidget.contains(event.target)) setTooltipOpen(false);
+    });
+  });
+
+  function selectedAnledning() {
+    return form.querySelector('[name="Anledning"]:checked');
+  }
+
+  function filledDates() {
+    return dateInputs()
+      .map(input => input.value)
+      .filter(Boolean);
+  }
+
+  function updateFormiddagAvailability() {
+    const dates = filledDates().map(value => parseISODate(value)).filter(Boolean);
+    const hasWeekday = dates.some(date => date.getDay() >= 1 && date.getDay() <= 5);
+    const hasWeekend = dates.some(date => date.getDay() === 0 || date.getDay() === 6);
+    const morningUnavailable = hasWeekday && !hasWeekend;
+
+    if (morningInput) {
+      morningInput.disabled = morningUnavailable;
+      if (morningUnavailable && morningInput.checked) morningInput.checked = false;
+    }
+    if (weekdayHint) {
+      weekdayHint.hidden = !hasWeekday;
+      weekdayHint.textContent = hasWeekday && hasWeekend
+        ? 'I kan vælge formiddag sammen med weekenddatoer, selvom nogle datoer ligger på en hverdag. Skriv det gerne i noterne, så finder vi en løsning.'
+        : 'Formiddag kan ikke vælges, når alle datoer ligger på hverdage. Vælg gerne en weekenddato.';
+    }
+  }
+
+  updateFormiddagAvailability();
+
+  function updateSummary() {
+    const summary = document.getElementById('booking-summary-text');
+    if (!summary) return;
+    const anledning = selectedAnledning()?.value || '';
+    const antal = antalSelect?.value || '';
+    const dates = filledDates();
+    const dateText = dates.map(formatDateShortDa).join(' eller ');
+    const timeOfDay = form.querySelector('[name="Tidspunkt pa dagen"]:checked')?.value || '';
+    const people = antal === 'Flere end 8' ? 'flere end 8 personer' : `${antal} personer`;
+    summary.textContent = [anledning, people, dateText, timeOfDay].filter(Boolean).join(' · ');
+  }
+
+  function setFieldError(id, message, controlOverride = null) {
+    const errorEl = document.getElementById(id);
+    if (!errorEl) return;
+    errorEl.textContent = message || '';
+    errorEl.classList.toggle('form-error--visible', Boolean(message));
+    const field = id.replace(/-error$/, '');
+    const control = controlOverride || form.querySelector(`#${field}`) ||
+      (field === 'datoer' ? form.querySelector('#dato-1') : null) ||
+      form.querySelector(`[name="${field === 'anledning' ? 'Anledning' : ''}"]`);
+    if (control) {
+      if (message) control.setAttribute('aria-invalid', 'true');
+      else control.removeAttribute('aria-invalid');
+    }
+  }
+
+  function clearFieldErrors() {
+    form.querySelectorAll('.form-error').forEach(el => {
+      el.textContent = '';
+      el.classList.remove('form-error--visible');
+    });
+    form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+  }
+
+  function validateStep1() {
+    clearFieldErrors();
+    let firstInvalid = null;
+
+    if (!selectedAnledning()) {
+      setFieldError('anledning-error', 'Vælg venligst en anledning');
+      firstInvalid = form.querySelector('[name="Anledning"]');
+    }
+
+    if (!antalSelect.value) {
+      setFieldError('antal-error', 'Vælg venligst antal deltagere');
+      firstInvalid = firstInvalid || antalSelect;
+    }
+
+    if (firstInvalid) firstInvalid.focus();
+    return !firstInvalid;
+  }
+
+  function validateStep2() {
+    clearFieldErrors();
+    let firstInvalid = null;
+    const dates = filledDates();
+    const pastDate = dateInputs().find(input => input.value && input.value < minDate);
+    const duplicateDateInput = findDuplicateDateInput();
+
+    if (!dates.length) {
+      setFieldError('datoer-error', 'Tilføj mindst én dato');
+      firstInvalid = form.querySelector('.js-booking-date-row.is-visible .js-booking-date') || addDateBtn;
+    } else if (duplicateDateInput) {
+      setFieldError('datoer-error', 'Denne dato er allerede valgt. Vælg en anden dato.', duplicateDateInput);
+      firstInvalid = duplicateDateInput;
+    } else if (pastDate) {
+      setFieldError('datoer-error', 'Vælg en dato fra i dag eller senere');
+      firstInvalid = pastDate;
+    }
+
+    if (firstInvalid) firstInvalid.focus();
+    return !firstInvalid;
+  }
+
+  function findDuplicateDateInput() {
+    const seenDates = new Set();
+    return dateInputs().find(input => {
+      if (!input.value) return false;
+      if (seenDates.has(input.value)) return true;
+      seenDates.add(input.value);
+      return false;
+    });
+  }
+
+  function updateDateDuplicateError() {
+    const duplicateDateInput = findDuplicateDateInput();
+    const error = document.getElementById('datoer-error');
+    const duplicateMessage = 'Denne dato er allerede valgt. Vælg en anden dato.';
+
+    if (duplicateDateInput) {
+      setFieldError('datoer-error', duplicateMessage, duplicateDateInput);
+    } else if (error.textContent === duplicateMessage) {
+      setFieldError('datoer-error', '');
+      dateInputs().forEach(input => input.removeAttribute('aria-invalid'));
+    }
+  }
+
+  function validateStep3() {
+    clearFieldErrors();
+    const nameInput = form.querySelector('#name');
+    let firstInvalid = null;
+
+    if (!nameInput.value.trim()) {
+      setFieldError('name-error', 'Skriv venligst jeres navn');
+      firstInvalid = nameInput;
+    }
+
+    const email = emailInput.value.trim();
+    if (!email) {
+      setFieldError('email-error', 'Skriv venligst jeres e-mail');
+      firstInvalid = firstInvalid || emailInput;
+    } else if (!emailInput.checkValidity()) {
+      setFieldError('email-error', 'Skriv en gyldig e-mailadresse');
+      firstInvalid = firstInvalid || emailInput;
+    }
+
+    if (firstInvalid) firstInvalid.focus();
+    return !firstInvalid;
+  }
+
+  function visibleDateRows() {
+    return Array.from(form.querySelectorAll('.js-booking-date-row')).filter(row =>
+      row.classList.contains('is-visible')
+    );
+  }
+
+  function syncDateRows() {
+    const rows = Array.from(form.querySelectorAll('.js-booking-date-row'));
+    rows.forEach(row => {
+      const filled = Boolean(row.querySelector('.js-booking-date')?.value);
+      const visible = row.classList.contains('is-visible') || filled;
+      row.classList.toggle('is-visible', visible);
+    });
+    const canRemove = visibleDateRows().length > 1;
+    rows.forEach(row => {
+      const removeBtn = row.querySelector('[data-remove-date]');
+      if (removeBtn) removeBtn.hidden = !row.classList.contains('is-visible') || !canRemove;
+      row.classList.toggle('has-remove-date', row.classList.contains('is-visible') && canRemove);
+    });
+    rows
+      .filter(row => row.classList.contains('is-visible'))
+      .concat(rows.filter(row => !row.classList.contains('is-visible')))
+      .forEach(row => form.querySelector('#booking-dates').appendChild(row));
+    visibleDateRows().forEach((row, index) => {
+      const dateNumber = index + 1;
+      const input = row.querySelector('.js-booking-date');
+      const label = row.querySelector('label');
+      const removeBtn = row.querySelector('[data-remove-date]');
+      if (input) input.name = `Dato ${dateNumber}`;
+      if (label) label.textContent = `Ønsket dato ${dateNumber}`;
+      if (removeBtn) removeBtn.setAttribute('aria-label', `Fjern dato ${dateNumber}`);
+    });
+    const canAdd = visibleDateRows().length < rows.length;
+    if (addDateBtn) addDateBtn.hidden = !canAdd;
+  }
+
+  if (addDateBtn) {
+    addDateBtn.addEventListener('click', () => {
+      const rows = Array.from(form.querySelectorAll('.js-booking-date-row'));
+      const next = rows.find(row => !row.classList.contains('is-visible'));
+      if (!next) return;
+      next.classList.add('is-visible');
+      const removeBtn = next.querySelector('[data-remove-date]');
+      if (removeBtn) removeBtn.hidden = false;
+      next.querySelector('.js-booking-date')?.focus();
+      syncDateRows();
+    });
+  }
+
+  form.querySelectorAll('[data-remove-date]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.booking-date-row');
+      const input = row?.querySelector('.js-booking-date');
+      if (input) input.value = '';
+      row?.classList.remove('is-visible');
+      syncDateRows();
+      updateFormiddagAvailability();
+      updateDateDuplicateError();
+    });
+  });
+
+  syncDateRows();
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (validateStep1()) goToStep(2);
+    });
+  }
+
+  if (nextDateBtn) {
+    nextDateBtn.addEventListener('click', () => {
+      if (validateStep2()) goToStep(3);
+    });
+  }
+
+  function backToStep1() {
+    goToStep(1);
+  }
+
+  function backToStep2() {
+    goToStep(2);
+  }
+
+  if (backBtn) backBtn.addEventListener('click', backToStep1);
+  if (backContactBtn) backContactBtn.addEventListener('click', backToStep2);
+  if (editBtn) editBtn.addEventListener('click', backToStep2);
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (currentStep() === 1) {
+      if (validateStep1()) goToStep(2);
+      return;
+    }
+
+    if (currentStep() === 2) {
+      if (validateStep2()) goToStep(3);
+      return;
+    }
+
+    if (!validateStep1()) {
+      goToStep(1);
+      return;
+    }
+    if (!validateStep2()) {
+      goToStep(2);
+      return;
+    }
+    if (!validateStep3()) return;
 
     // ── Rate limit check ──────────────────────────────────────────────────────
     const { allowed, minutesLeft } = checkRateLimit();
     if (!allowed) {
       showErrorMessage(
-        `Du har sendt for mange beskeder på kort tid. Prøv igen om ${minutesLeft} minut${minutesLeft === 1 ? '' : 'ter'}.`
+        `I har sendt for mange forespørgsler på kort tid. Prøv igen om ${minutesLeft} minut${minutesLeft === 1 ? '' : 'ter'}.`
       );
       return;
     }
-    
-    // Update replyto with email value
+
     if (emailInput && replyToInput) {
       replyToInput.value = emailInput.value;
     }
-    
+
+    const dates = filledDates();
+    const formattedDates = dates.map(formatDateDot);
+    if (datesField) datesField.value = formattedDates.join(', ');
+
+    const anledning = selectedAnledning()?.value || '';
+    const antal = antalSelect?.value || '';
+    const persLabel = antal === 'Flere end 8' ? '8+ pers.' : `${antal} pers.`;
+    if (subjectInput) {
+      subjectInput.value = `Booking-forespørgsel: ${anledning} · ${persLabel} · ${formattedDates.join(' / ')}`;
+    }
+
     const formData = new FormData(form);
-    
-    // Store original button content
+    formData.set('E-mail', emailInput.value.trim());
+    formData.delete('email');
+    formData.set('Onskede datoer', formattedDates.join(', '));
+    if (!form.querySelector('#fleksibel')?.checked) {
+      formData.set('Fleksibel med dato', 'Nej');
+    }
+    formData.delete('Dato 1');
+    formData.delete('Dato 2');
+    formData.delete('Dato 3');
+
     const originalHTML = submitBtn.innerHTML;
-    
-    // Show loading state
+
     submitBtn.innerHTML = `
       <svg class="button-spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="20" height="20">
         <circle opacity="0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -200,18 +625,17 @@ function initContactForm() {
       Sender...
     `;
     submitBtn.disabled = true;
-    
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData
       });
-      
+
       const data = await response.json();
-      
-      if (response.ok) {
+
+      if (response.ok && data.success) {
         showSuccessMessage();
-        form.reset();
       } else {
         showErrorMessage(data.message || 'Der opstod en fejl. Prøv igen.');
       }
@@ -243,40 +667,19 @@ function checkFormSuccess() {
  */
 function showSuccessMessage() {
   const form = document.getElementById('contact-form');
-  if (!form) return;
-  
-  // Remove any existing messages
+  const success = document.getElementById('booking-success');
+  if (!form || !success) return;
+
   removeFormMessages(form);
-  
-  // Create success message
-  const successDiv = document.createElement('div');
-  successDiv.className = 'form-message form-success';
-  successDiv.setAttribute('role', 'alert');
-  successDiv.setAttribute('aria-live', 'polite');
-  successDiv.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
-      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
-    </svg>
-    <span>Tak for din besked! Vi vender tilbage hurtigst muligt.</span>
-  `;
-  successDiv.style.cssText = `
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--state-success);
-    color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  `;
+  form.hidden = true;
+  success.hidden = false;
+  form.closest('.contact-form-wrapper')?.classList.add('has-booking-success');
 
-  form.insertBefore(successDiv, form.firstChild);
-
-  // Remove after 8 seconds
-  setTimeout(() => {
-    successDiv.remove();
-  }, 8000);
+  const heading = success.querySelector('#booking-success-title') || success;
+  const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+  const top = heading.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  heading.focus({ preventScroll: true });
 }
 
 /**
@@ -285,36 +688,20 @@ function showSuccessMessage() {
 function showErrorMessage(message) {
   const form = document.getElementById('contact-form');
   if (!form) return;
-  
-  // Remove any existing messages
+
   removeFormMessages(form);
-  
-  // Create error message
+
   const errorDiv = document.createElement('div');
-  errorDiv.className = 'form-message form-error';
+  errorDiv.className = 'form-message form-error-banner';
   errorDiv.setAttribute('role', 'alert');
   errorDiv.setAttribute('aria-live', 'assertive');
-  errorDiv.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
-      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-    </svg>
-    <span>${message}</span>
-  `;
-  errorDiv.style.cssText = `
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--state-warning);
-    color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  `;
+  const errorText = document.createElement('span');
+  errorText.textContent = message;
+  errorDiv.appendChild(errorText);
 
-  form.insertBefore(errorDiv, form.firstChild);
+  const mount = form.querySelector('#booking-form-alert') || form;
+  mount.prepend(errorDiv);
 
-  // Remove after 8 seconds
   setTimeout(() => {
     errorDiv.remove();
   }, 8000);
