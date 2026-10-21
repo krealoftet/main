@@ -545,7 +545,8 @@ function initContactForm() {
       const row = btn.closest('.booking-date-row');
       const input = row?.querySelector('.js-booking-date');
       if (input) {
-        input.value = '';
+        if (input._flatpickr) input._flatpickr.clear();
+        else input.value = '';
         syncDateInputDisplay(input);
       }
       row?.classList.remove('is-visible');
