@@ -8,9 +8,14 @@ A local Python-based browser automation agent that **records** your browser acti
 
 ```bash
 cd browser-agent
-pip install -r requirements.txt
+uv python install
+uv venv
+uv pip sync requirements.lock
+source .venv/bin/activate
 playwright install chromium
 ```
+
+The project pins Python 3.13.13 and locks all Python packages. On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1`. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if it is not already available.
 
 ### 2. Configure environment
 

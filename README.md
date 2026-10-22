@@ -15,8 +15,8 @@ A modern, responsive website for an artisan ceramics and pottery studio, built w
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+ 
-- npm or yarn
+- Node.js 24.22.1 (the pinned, patched LTS release)
+- npm
 
 ### Installation
 
@@ -24,14 +24,16 @@ A modern, responsive website for an artisan ceramics and pottery studio, built w
 # Clone or download the project
 cd clay_workshop
 
-# Install dependencies
-npm install
+# Install the exact dependency versions from the lockfile
+npm ci
 
 # Start development server
 npm run dev
 ```
 
 The site will be available at `http://localhost:3000`
+
+Run `npm audit` to check dependencies for known vulnerabilities before updating or deploying.
 
 ## 📁 Project Structure
 
@@ -184,4 +186,3 @@ For questions about this project, please contact:
 ---
 
 Built with ❤️ for artisan crafters and modern web standards.
-
